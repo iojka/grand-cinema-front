@@ -1,0 +1,74 @@
+/* Styles de base provisoires : la maquette Figma sera appliquée ensuite */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Typographie : police de 16 px minimum (accessibilité) */
+body {
+  font-family: system-ui, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+
+main {
+  padding: 1rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+/* Focus visible pour la navigation au clavier */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #0b57d0;
+  outline-offset: 2px;
+}
+
+/* En-tête : mobile d'abord (mobile-first) */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #1a1a1a;
+}
+
+.header a,
+.header button {
+  color: #ffffff;
+}
+
+.header__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.header__nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.header button {
+  background: none;
+  border: 1px solid #ffffff;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+/* Tablette et ordinateur */
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "header": {
+    "title": "Le Grand Cinéma",
+    "home": "Accueil",
+    "switchLanguage": "English version"
+  },
+  "home": {
+    "welcome": "Bienvenue au Grand Cinéma",
+    "apiOk": "Le service de réservation est disponible.",
+    "apiKo": "Le service de réservation est momentanément indisponible.",
+    "loading": "Chargement..."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "back": "Retour à l'accueil"
+  }
+}
