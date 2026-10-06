@@ -1,0 +1,17 @@
+{
+  "header": {
+    "title": "Le Grand Cinéma",
+    "home": "Home",
+    "switchLanguage": "Version française"
+  },
+  "home": {
+    "welcome": "Welcome to Le Grand Cinéma",
+    "apiOk": "The booking service is available.",
+    "apiKo": "The booking service is temporarily unavailable.",
+    "loading": "Loading..."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "back": "Back to home"
+  }
+}
