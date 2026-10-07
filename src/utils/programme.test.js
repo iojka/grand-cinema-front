@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
+  areSideBySide,
   formatDuration,
+  formatPrice,
   getDay,
   getTime,
   groupByDay,
@@ -60,5 +62,22 @@ describe('plan de salle (US 2.1)', () => {
 
     expect(rows.map((item) => item.row)).toEqual(['A', 'B']);
     expect(rows[0].seats).toHaveLength(2);
+  });
+});
+
+describe('choix des places (US 2.2)', () => {
+  it('vérifie que les places sont côte à côte', () => {
+    const a1 = { row: 'A', number: 1 };
+    const a2 = { row: 'A', number: 2 };
+    const a3 = { row: 'A', number: 3 };
+    const b2 = { row: 'B', number: 2 };
+
+    expect(areSideBySide([a2, a1])).toBe(true);
+    expect(areSideBySide([a1, a3])).toBe(false);
+    expect(areSideBySide([a1, b2])).toBe(false);
+  });
+
+  it('affiche un prix en euros', () => {
+    expect(formatPrice('22.00', 'fr')).toMatch(/22,00/);
   });
 });

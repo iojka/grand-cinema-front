@@ -39,10 +39,21 @@
     },
     "legend": {
       "FREE": "Available",
+      "SELECTED": "Selected",
       "HELD": "Temporarily on hold",
       "SOLD": "Sold",
       "accessible": "Wheelchair space"
-    }
+    },
+    "hold": "Book these seats",
+    "selected_one": "{{count}} seat selected",
+    "selected_other": "{{count}} seats selected",
+    "notSideBySide": "Choose seats side by side, in the same row.",
+    "taken": "One of the seats has just been taken. The plan has been updated, please choose other seats.",
+    "held": "Your seats are held until {{time}}.",
+    "reference": "Reference: {{reference}}",
+    "total": "Total: {{total}}",
+    "next": "Next step: choose your fares.",
+    "holdError": "Booking is temporarily unavailable."
   },
   "rating": {
     "TP": "All audiences",

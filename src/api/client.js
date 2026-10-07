@@ -45,3 +45,25 @@ export function getMovie(id) {
 export function getSeatMap(id) {
   return getData(`/api/booking/screenings/${id}/seats/`);
 }
+
+/**
+ * Bloque des places côte à côte pendant 10 minutes (US 2.2)
+ * @param {number} screeningId identifiant de la séance
+ * @param {Array<number>} seatIds identifiants des places choisies
+ * @returns {Promise<object|null>} { status, data }, ou null si l'API ne
+ *   répond pas
+ */
+export async function holdSeats(screeningId, seatIds) {
+  try {
+    const response = await fetch(`${API_URL}/api/booking/holds/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ screening: screeningId, seats: seatIds }),
+    });
+    const data = await response.json();
+    return { status: response.status, data };
+  } catch (error) {
+    console.error('Blocage impossible :', error.message);
+    return null;
+  }
+}

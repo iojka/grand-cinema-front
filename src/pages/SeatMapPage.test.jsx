@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import SeatMapPage from './SeatMapPage.jsx';
@@ -121,5 +122,89 @@ describe('SeatMapPage (US 2.1)', () => {
     expect(
       await screen.findByText("Cette séance n'est pas disponible."),
     ).toBeInTheDocument();
+  });
+});
+
+// US 2.2 : séance avec 3 places libres côte à côte
+const FREE_MAP = {
+  ...SEAT_MAP,
+  remaining_seats: 3,
+  seats: SEAT_MAP.seats.map((seat) => ({ ...seat, status: 'FREE' })),
+};
+
+// Simule l'API : GET du plan de salle, POST du blocage
+function mockHoldApi(status, data) {
+  const fetchMock = vi.fn((url, options) => {
+    if (options && options.method === 'POST') {
+      return Promise.resolve({
+        ok: status < 300,
+        status,
+        json: () => Promise.resolve(data),
+      });
+    }
+    return Promise.resolve(response(FREE_MAP));
+  });
+  vi.stubGlobal('fetch', fetchMock);
+  return fetchMock;
+}
+
+describe('SeatMapPage (US 2.2)', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('bloque des places côte à côte', async () => {
+    const fetchMock = mockHoldApi(201, {
+      id: 'abc',
+      reference: 'LPNLT2HX',
+      expires_at: '2026-10-08T20:40:00+02:00',
+      total_amount: '22.00',
+    });
+    renderSeatMap();
+
+    await userEvent.click(await screen.findByLabelText('A1 libre'));
+    await userEvent.click(screen.getByLabelText('A2 libre'));
+    await userEvent.click(screen.getByText('Réserver ces places'));
+
+    expect(
+      await screen.findByText("Vos places sont bloquées jusqu'à 20:40."),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/LPNLT2HX/)).toBeInTheDocument();
+    const [, options] = fetchMock.mock.calls.find(
+      ([, request]) => request && request.method === 'POST',
+    );
+    expect(JSON.parse(options.body)).toEqual({ screening: 1, seats: [1, 2] });
+  });
+
+  it('refuse des places qui ne sont pas côte à côte', async () => {
+    mockHoldApi(201, {});
+    renderSeatMap();
+
+    await userEvent.click(await screen.findByLabelText('A1 libre'));
+    await userEvent.click(screen.getByLabelText('A3 libre'));
+
+    expect(screen.getByText('Réserver ces places')).toBeDisabled();
+    expect(
+      screen.getByText(
+        'Choisissez des places côte à côte, dans la même rangée.',
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('affiche un message et rafraîchit le plan si une place est prise', async () => {
+    const fetchMock = mockHoldApi(409, { detail: 'conflit' });
+    renderSeatMap();
+
+    await userEvent.click(await screen.findByLabelText('A1 libre'));
+    await userEvent.click(screen.getByText('Réserver ces places'));
+
+    expect(
+      await screen.findByText(
+        "Une des places vient d'être prise. Le plan a été mis à jour, choisissez d'autres places.",
+      ),
+    ).toBeInTheDocument();
+    // 1er affichage + nouvelle lecture du plan après le conflit
+    const reads = fetchMock.mock.calls.filter(([, request]) => !request);
+    expect(reads.length).toBeGreaterThanOrEqual(2);
   });
 });
