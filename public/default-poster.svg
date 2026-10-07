@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300" viewBox="0 0 200 300">
+  <!-- Visuel par défaut d'un film sans affiche (US 1.3) -->
+  <rect width="200" height="300" fill="#eae4e0"/>
+  <rect x="60" y="120" width="80" height="60" rx="6" fill="#6b6562"/>
+  <rect x="60" y="104" width="80" height="12" rx="3" fill="#6b6562"/>
+  <circle cx="100" cy="150" r="14" fill="#eae4e0"/>
+</svg>

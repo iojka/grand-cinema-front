@@ -75,6 +75,15 @@ describe('HomePage (US 1.1)', () => {
     expect(screen.queryByText('Festival')).not.toBeInTheDocument();
   });
 
+  it('ouvre la fiche du film quand on clique sur son titre (US 1.3)', async () => {
+    mockApi(PROGRAMME);
+
+    renderHome();
+
+    const link = await screen.findByRole('link', { name: 'Le jazz à Mende' });
+    expect(link).toHaveAttribute('href', '/films/1');
+  });
+
   it("indique une séance complète, qui n'est pas réservable", async () => {
     mockApi(PROGRAMME);
 

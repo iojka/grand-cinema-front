@@ -15,6 +15,15 @@
     "remaining_other": "{{count}} seats left",
     "youngAudience": "Young audience"
   },
+  "movie": {
+    "back": "← Back to the programme",
+    "loading": "Loading the film...",
+    "error": "This film cannot be found.",
+    "poster": "Poster of the film {{title}}",
+    "noPoster": "Poster not available",
+    "synopsis": "Synopsis",
+    "screenings": "Next screenings"
+  },
   "rating": {
     "TP": "All audiences",
     "-12": "Not suitable for under 12s",

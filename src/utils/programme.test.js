@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { getDay, getTime, groupByDay, groupByMovie } from './programme.js';
+import {
+  formatDuration,
+  getDay,
+  getTime,
+  groupByDay,
+  groupByMovie,
+} from './programme.js';
 
 // Trois séances comme les renvoie l'API (déjà triées par date et heure)
 const jazz = { id: 1, title: 'Le jazz à Mende' };
@@ -31,5 +37,12 @@ describe('programme (US 1.1)', () => {
       'Festival',
     ]);
     expect(movies[0].screenings).toHaveLength(2);
+  });
+});
+
+describe('fiche film (US 1.3)', () => {
+  it('affiche la durée en heures et minutes', () => {
+    expect(formatDuration(95)).toBe('1 h 35');
+    expect(formatDuration(120)).toBe('2 h 00');
   });
 });

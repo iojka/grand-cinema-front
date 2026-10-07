@@ -71,3 +71,14 @@ export function groupByMovie(screenings) {
   }
   return movies;
 }
+
+/**
+ * Affiche la durée d'un film, par exemple "1 h 35" (US 1.3)
+ * @param {number} minutes durée du film en minutes
+ * @returns {string} la durée en heures et minutes
+ */
+export function formatDuration(minutes) {
+  const hours = Math.floor(minutes / 60);
+  const rest = String(minutes % 60).padStart(2, '0');
+  return `${hours} h ${rest}`;
+}

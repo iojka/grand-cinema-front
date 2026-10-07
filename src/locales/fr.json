@@ -15,6 +15,15 @@
     "remaining_other": "{{count}} places restantes",
     "youngAudience": "Jeune public"
   },
+  "movie": {
+    "back": "← Retour au programme",
+    "loading": "Chargement du film...",
+    "error": "Ce film est introuvable.",
+    "poster": "Affiche du film {{title}}",
+    "noPoster": "Affiche non disponible",
+    "synopsis": "Synopsis",
+    "screenings": "Prochaines séances"
+  },
   "rating": {
     "TP": "Tous publics",
     "-12": "Interdit aux moins de 12 ans",
