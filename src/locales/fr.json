@@ -49,11 +49,20 @@
     "selected_other": "{{count}} places sélectionnées",
     "notSideBySide": "Choisissez des places côte à côte, dans la même rangée.",
     "taken": "Une des places vient d'être prise. Le plan a été mis à jour, choisissez d'autres places.",
+    "holdError": "La réservation est momentanément indisponible."
+  },
+  "booking": {
+    "title": "Votre panier",
+    "loading": "Chargement du panier...",
     "held": "Vos places sont bloquées jusqu'à {{time}}.",
     "reference": "Référence : {{reference}}",
+    "seat": "Place {{seat}}",
     "total": "Total : {{total}}",
-    "next": "Prochaine étape : choix des tarifs.",
-    "holdError": "La réservation est momentanément indisponible."
+    "proof": "Un justificatif sera demandé à l'entrée pour les tarifs réduits.",
+    "next": "Prochaine étape : vos coordonnées.",
+    "expired": "Votre blocage a expiré : vos places ont été libérées.",
+    "back": "Revenir au plan de salle",
+    "changeSeats": "Modifier mes places"
   },
   "rating": {
     "TP": "Tous publics",

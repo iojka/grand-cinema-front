@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
 import { getSeatMap, holdSeats } from '../api/client.js';
 import OtherScreenings from '../components/OtherScreenings.jsx';
 import {
   areSideBySide,
   formatDay,
-  formatPrice,
   getDay,
   getTime,
   groupByRow,
@@ -23,11 +22,11 @@ const LEGEND = ['FREE', 'SELECTED', 'HELD', 'SOLD'];
 function SeatMapPage() {
   const { id } = useParams(); // identifiant de la séance dans l'adresse
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [seatMap, setSeatMap] = useState(null); // null = chargement
   const [error, setError] = useState(false);
   const [reload, setReload] = useState(0); // change = relire tout de suite
   const [selected, setSelected] = useState([]); // id des places choisies
-  const [hold, setHold] = useState(null); // réservation obtenue
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -65,7 +64,9 @@ function SeatMapPage() {
     if (result === null) {
       setMessage(t('seats.holdError'));
     } else if (result.status === 201) {
-      setHold(result.data);
+      // US 2.3 : le spectateur choisit ensuite ses tarifs dans le panier
+      navigate(`/reservation/${result.data.id}`);
+      return;
     } else if (result.status === 409) {
       setMessage(t('seats.taken'));
     } else {
@@ -121,8 +122,8 @@ function SeatMapPage() {
               if (seat.is_accessible) {
                 className += ' seat--accessible';
               }
-              // Place libre (et pas encore de blocage) : bouton cliquable
-              if (seat.status === 'FREE' && hold === null) {
+              // Place libre : bouton cliquable
+              if (seat.status === 'FREE') {
                 return (
                   <button
                     key={seat.id}
@@ -174,33 +175,18 @@ function SeatMapPage() {
         </p>
       )}
 
-      {hold ? (
-        <div role="status" className="message">
-          <p>{t('seats.held', { time: getTime(hold.expires_at) })}</p>
-          <p>{t('seats.reference', { reference: hold.reference })}</p>
-          <p>
-            {t('seats.total', {
-              total: formatPrice(hold.total_amount, i18n.language),
-            })}
-          </p>
-          <p>{t('seats.next')}</p>
-        </div>
-      ) : (
-        <div className="selection">
-          <p>{t('seats.selected', { count: chosen.length })}</p>
-          {chosen.length > 1 && !sideBySide && (
-            <p>{t('seats.notSideBySide')}</p>
-          )}
-          <button
-            type="button"
-            className="button"
-            disabled={!sideBySide}
-            onClick={handleHold}
-          >
-            {t('seats.hold')}
-          </button>
-        </div>
-      )}
+      <div className="selection">
+        <p>{t('seats.selected', { count: chosen.length })}</p>
+        {chosen.length > 1 && !sideBySide && <p>{t('seats.notSideBySide')}</p>}
+        <button
+          type="button"
+          className="button"
+          disabled={!sideBySide}
+          onClick={handleHold}
+        >
+          {t('seats.hold')}
+        </button>
+      </div>
     </section>
   );
 }
