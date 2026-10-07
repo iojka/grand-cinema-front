@@ -82,3 +82,21 @@ export function formatDuration(minutes) {
   const rest = String(minutes % 60).padStart(2, '0');
   return `${hours} h ${rest}`;
 }
+
+/**
+ * Regroupe les places par rangée, en gardant l'ordre de l'API (US 2.1)
+ * @param {Array} seats places de la salle triées par rangée et numéro
+ * @returns {Array} liste de { row, seats }
+ */
+export function groupByRow(seats) {
+  const rows = [];
+  for (const seat of seats) {
+    let item = rows.find((line) => line.row === seat.row);
+    if (!item) {
+      item = { row: seat.row, seats: [] };
+      rows.push(item);
+    }
+    item.seats.push(seat);
+  }
+  return rows;
+}

@@ -24,6 +24,26 @@
     "synopsis": "Synopsis",
     "screenings": "Prochaines séances"
   },
+  "seats": {
+    "title": "Plan de salle",
+    "loading": "Chargement du plan de salle...",
+    "error": "Cette séance n'est pas disponible.",
+    "screen": "Écran",
+    "full": "Cette séance est complète.",
+    "others": "Autres séances de ce film",
+    "noOthers": "Aucune autre séance disponible pour ce film.",
+    "status": {
+      "FREE": "libre",
+      "HELD": "bloquée",
+      "SOLD": "vendue"
+    },
+    "legend": {
+      "FREE": "Libre",
+      "HELD": "Bloquée temporairement",
+      "SOLD": "Vendue",
+      "accessible": "Place PMR"
+    }
+  },
   "rating": {
     "TP": "Tous publics",
     "-12": "Interdit aux moins de 12 ans",
