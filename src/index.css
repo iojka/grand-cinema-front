@@ -319,6 +319,12 @@ button.seat {
   cursor: pointer;
 }
 
+/* Bouton secondaire : contour, sans fond orange */
+.button--secondary {
+  border: 1px solid var(--text);
+  background-color: var(--card);
+}
+
 .button:disabled {
   background-color: var(--placeholder);
   color: var(--text-light);
@@ -338,6 +344,44 @@ button.seat {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* Panier (US 2.3) : une ligne par place avec le choix du tarif */
+.tickets {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  list-style: none;
+}
+
+.tickets li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  background-color: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.tickets label {
+  min-width: 5rem;
+  font-weight: bold;
+}
+
+.tickets select {
+  padding: 0.5rem;
+  border: 1px solid var(--text-light);
+  border-radius: var(--radius);
+  background-color: var(--card);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.basket__total {
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 /* Tablette et ordinateur : en-tête sur une ligne, 2 colonnes de films */

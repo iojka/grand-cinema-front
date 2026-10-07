@@ -47,6 +47,7 @@ function renderSeatMap() {
     <MemoryRouter initialEntries={['/seances/1']}>
       <Routes>
         <Route path="/seances/:id" element={<SeatMapPage />} />
+        <Route path="/reservation/:id" element={<p>Page panier</p>} />
       </Routes>
     </MemoryRouter>,
   );
@@ -153,7 +154,7 @@ describe('SeatMapPage (US 2.2)', () => {
     vi.unstubAllGlobals();
   });
 
-  it('bloque des places côte à côte', async () => {
+  it('bloque des places côte à côte puis ouvre le panier', async () => {
     const fetchMock = mockHoldApi(201, {
       id: 'abc',
       reference: 'LPNLT2HX',
@@ -166,10 +167,8 @@ describe('SeatMapPage (US 2.2)', () => {
     await userEvent.click(screen.getByLabelText('A2 libre'));
     await userEvent.click(screen.getByText('Réserver ces places'));
 
-    expect(
-      await screen.findByText("Vos places sont bloquées jusqu'à 20:40."),
-    ).toBeInTheDocument();
-    expect(screen.getByText(/LPNLT2HX/)).toBeInTheDocument();
+    // US 2.3 : après le blocage, le spectateur arrive sur son panier
+    expect(await screen.findByText('Page panier')).toBeInTheDocument();
     const [, options] = fetchMock.mock.calls.find(
       ([, request]) => request && request.method === 'POST',
     );

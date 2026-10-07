@@ -67,3 +67,55 @@ export async function holdSeats(screeningId, seatIds) {
     return null;
   }
 }
+
+/**
+ * Récupère le panier d'une réservation en attente (US 2.3)
+ * @param {string} id identifiant de la réservation
+ * @returns {Promise<object|null>} le panier, ou null s'il a expiré
+ */
+export function getBooking(id) {
+  return getData(`/api/booking/bookings/${id}/`);
+}
+
+/**
+ * Choisit le tarif d'une place du panier (US 2.3)
+ * @param {string} bookingId identifiant de la réservation
+ * @param {string} ticketId identifiant de la place (billet)
+ * @param {number} priceId identifiant du tarif choisi
+ * @returns {Promise<object|null>} le panier recalculé, ou null en cas
+ *   d'erreur (panier expiré)
+ */
+export async function changeTicketPrice(bookingId, ticketId, priceId) {
+  try {
+    const path = `/api/booking/bookings/${bookingId}/tickets/${ticketId}/`;
+    const response = await fetch(`${API_URL}${path}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ price: priceId }),
+    });
+    if (!response.ok) {
+      throw new Error(`erreur ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Tarif non modifié :', error.message);
+    return null;
+  }
+}
+
+/**
+ * Annule le panier pour changer de places : elles sont libérées (US 2.3)
+ * @param {string} id identifiant de la réservation
+ * @returns {Promise<boolean>} true si le panier est annulé
+ */
+export async function cancelBooking(id) {
+  try {
+    const response = await fetch(`${API_URL}/api/booking/bookings/${id}/`, {
+      method: 'DELETE',
+    });
+    return response.ok;
+  } catch (error) {
+    console.error('Panier non annulé :', error.message);
+    return false;
+  }
+}

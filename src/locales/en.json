@@ -49,11 +49,20 @@
     "selected_other": "{{count}} seats selected",
     "notSideBySide": "Choose seats side by side, in the same row.",
     "taken": "One of the seats has just been taken. The plan has been updated, please choose other seats.",
+    "holdError": "Booking is temporarily unavailable."
+  },
+  "booking": {
+    "title": "Your basket",
+    "loading": "Loading your basket...",
     "held": "Your seats are held until {{time}}.",
     "reference": "Reference: {{reference}}",
+    "seat": "Seat {{seat}}",
     "total": "Total: {{total}}",
-    "next": "Next step: choose your fares.",
-    "holdError": "Booking is temporarily unavailable."
+    "proof": "Proof of eligibility will be checked at the entrance for reduced fares.",
+    "next": "Next step: your contact details.",
+    "expired": "Your hold has expired: your seats have been released.",
+    "back": "Back to the seating plan",
+    "changeSeats": "Change my seats"
   },
   "rating": {
     "TP": "All audiences",
