@@ -39,10 +39,21 @@
     },
     "legend": {
       "FREE": "Libre",
+      "SELECTED": "Sélectionnée",
       "HELD": "Bloquée temporairement",
       "SOLD": "Vendue",
       "accessible": "Place PMR"
-    }
+    },
+    "hold": "Réserver ces places",
+    "selected_one": "{{count}} place sélectionnée",
+    "selected_other": "{{count}} places sélectionnées",
+    "notSideBySide": "Choisissez des places côte à côte, dans la même rangée.",
+    "taken": "Une des places vient d'être prise. Le plan a été mis à jour, choisissez d'autres places.",
+    "held": "Vos places sont bloquées jusqu'à {{time}}.",
+    "reference": "Référence : {{reference}}",
+    "total": "Total : {{total}}",
+    "next": "Prochaine étape : choix des tarifs.",
+    "holdError": "La réservation est momentanément indisponible."
   },
   "rating": {
     "TP": "Tous publics",

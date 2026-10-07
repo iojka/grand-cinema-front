@@ -100,3 +100,37 @@ export function groupByRow(seats) {
   }
   return rows;
 }
+
+/**
+ * Vérifie que des places sont côte à côte : même rangée et numéros qui
+ * se suivent (US 2.2)
+ * @param {Array} seats places choisies, dans n'importe quel ordre
+ * @returns {boolean} true si les places sont côte à côte
+ */
+export function areSideBySide(seats) {
+  if (seats.length === 0) {
+    return false;
+  }
+  const sorted = [...seats].sort((a, b) => a.number - b.number);
+  for (let i = 1; i < sorted.length; i++) {
+    const sameRow = sorted[i].row === sorted[0].row;
+    const next = sorted[i].number === sorted[i - 1].number + 1;
+    if (!sameRow || !next) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
+ * Affiche un prix en euros dans la langue choisie, par exemple "22,00 €"
+ * @param {string} amount montant renvoyé par l'API, par exemple "22.00"
+ * @param {string} language langue de l'interface ("fr" ou "en")
+ * @returns {string} le prix à afficher
+ */
+export function formatPrice(amount, language) {
+  return Number(amount).toLocaleString(language, {
+    style: 'currency',
+    currency: 'EUR',
+  });
+}
