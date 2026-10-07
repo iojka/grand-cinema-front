@@ -2,16 +2,19 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 
 /**
- * Vérifie que l'API répond.
- * @returns {Promise<boolean>} true si l'API est disponible
+ * Récupère le programme des 7 prochains jours (US 1.1)
+ * @returns {Promise<Array|null>} les séances, ou null si l'API ne répond pas
  */
-export async function getApiHealth() {
+export async function getProgramme() {
   try {
-    const response = await fetch(`${API_URL}/api/health/`);
-    return response.ok;
+    const response = await fetch(`${API_URL}/api/programme/`);
+    if (!response.ok) {
+      throw new Error(`erreur ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
-    // Erreur réseau : serveur arrêté, connexion coupée...
-    console.error('API injoignable :', error.message);
-    return false;
+    // Erreur réseau ou serveur : la page affichera un message
+    console.error('Programme indisponible :', error.message);
+    return null;
   }
 }

@@ -4,11 +4,22 @@
     "home": "Accueil",
     "switchLanguage": "English version"
   },
-  "home": {
-    "welcome": "Bienvenue au Grand Cinéma",
-    "apiOk": "Le service de réservation est disponible.",
-    "apiKo": "Le service de réservation est momentanément indisponible.",
-    "loading": "Chargement..."
+  "programme": {
+    "title": "Programme de la semaine",
+    "days": "Jours",
+    "loading": "Chargement du programme...",
+    "empty": "Aucune séance dans les 7 prochains jours.",
+    "error": "Le programme est momentanément indisponible.",
+    "full": "Complet",
+    "remaining_one": "{{count}} place restante",
+    "remaining_other": "{{count}} places restantes",
+    "youngAudience": "Jeune public"
+  },
+  "rating": {
+    "TP": "Tous publics",
+    "-12": "Interdit aux moins de 12 ans",
+    "-16": "Interdit aux moins de 16 ans",
+    "-18": "Interdit aux moins de 18 ans"
   },
   "notFound": {
     "title": "Page introuvable",

@@ -1,4 +1,16 @@
-/* Styles de base provisoires : la maquette Figma sera appliquée ensuite */
+/* Styles du Grand Cinéma, inspirés de la maquette Figma (Envato) */
+
+/* Couleurs et formes de la maquette, réutilisées partout */
+:root {
+  --accent: #fb955b; /* orange de la maquette */
+  --text: #3e3c3b;
+  --text-light: #6b6562; /* plus foncé que la maquette : lisibilité (NF3) */
+  --background: #f9f9f9;
+  --card: #ffffff;
+  --placeholder: #eae4e0;
+  --radius: 12px;
+  --shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+}
 
 /* Reset */
 * {
@@ -7,27 +19,31 @@
   box-sizing: border-box;
 }
 
-/* Typographie : police de 16 px minimum (accessibilité) */
+/* Typographie : police système, 16 px minimum (accessibilité) */
 body {
   font-family: system-ui, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #1a1a1a;
-  background-color: #ffffff;
+  color: var(--text);
+  background-color: var(--background);
 }
 
+/* Contenu centré, largeur limitée sur grand écran */
 main {
+  max-width: 1100px;
+  margin: 0 auto;
   padding: 1rem;
 }
 
 h1 {
   margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 /* Focus visible pour la navigation au clavier */
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid #0b57d0;
+  outline: 3px solid var(--text);
   outline-offset: 2px;
 }
 
@@ -37,12 +53,13 @@ button:focus-visible {
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
-  background-color: #1a1a1a;
+  background-color: var(--card);
+  box-shadow: var(--shadow);
 }
 
 .header a,
 .header button {
-  color: #ffffff;
+  color: var(--text);
 }
 
 .header__title {
@@ -59,16 +76,105 @@ button:focus-visible {
 
 .header button {
   background: none;
-  border: 1px solid #ffffff;
-  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--text);
+  border-radius: var(--radius);
+  padding: 0.25rem 0.75rem;
   cursor: pointer;
 }
 
-/* Tablette et ordinateur */
+/* Pastilles : jours et horaires */
+.pill {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--placeholder);
+  border-radius: var(--radius);
+  background-color: var(--card);
+  color: var(--text);
+  font-size: 0.875rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Jour sélectionné : orange de la maquette, texte foncé (contraste) */
+.pill[aria-pressed='true'] {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  font-weight: bold;
+}
+
+/* Séance complète : grisée et non cliquable */
+.pill--full {
+  background-color: var(--placeholder);
+  color: var(--text-light);
+  cursor: not-allowed;
+}
+
+/* Jours : défilement horizontal sur mobile */
+.days {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.days .pill {
+  flex-shrink: 0;
+}
+
+/* Cartes des films : une colonne sur mobile */
+.movies {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.card__poster {
+  width: 100px;
+  height: 140px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background-color: var(--placeholder);
+}
+
+.card h2 {
+  font-size: 1.125rem;
+}
+
+.card__details {
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
+
+.screenings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+/* Tablette et ordinateur : en-tête sur une ligne, 2 colonnes de films */
 @media (min-width: 768px) {
   .header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 2rem;
+  }
+
+  .movies {
+    grid-template-columns: 1fr 1fr;
   }
 }

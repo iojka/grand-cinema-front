@@ -4,11 +4,22 @@
     "home": "Home",
     "switchLanguage": "Version française"
   },
-  "home": {
-    "welcome": "Welcome to Le Grand Cinéma",
-    "apiOk": "The booking service is available.",
-    "apiKo": "The booking service is temporarily unavailable.",
-    "loading": "Loading..."
+  "programme": {
+    "title": "This week's programme",
+    "days": "Days",
+    "loading": "Loading the programme...",
+    "empty": "No screenings in the next 7 days.",
+    "error": "The programme is temporarily unavailable.",
+    "full": "Sold out",
+    "remaining_one": "{{count}} seat left",
+    "remaining_other": "{{count}} seats left",
+    "youngAudience": "Young audience"
+  },
+  "rating": {
+    "TP": "All audiences",
+    "-12": "Not suitable for under 12s",
+    "-16": "Not suitable for under 16s",
+    "-18": "Not suitable for under 18s"
   },
   "notFound": {
     "title": "Page not found",
