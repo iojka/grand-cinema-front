@@ -1,9 +1,17 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import App from './App.jsx';
 import i18n from './i18n';
+
+// Programme vide renvoyé par l'API
+function mockEmptyProgramme() {
+  vi.stubGlobal(
+    'fetch',
+    vi.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve([]) }),
+  );
+}
 
 // Affiche l'application à une adresse donnée
 function renderApp(url = '/') {
@@ -20,45 +28,28 @@ describe('App', () => {
     i18n.changeLanguage('fr');
   });
 
-  it("affiche l'accueil et indique que l'API est disponible", async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }));
+  it("affiche l'accueil avec le programme de la semaine", async () => {
+    mockEmptyProgramme();
 
     renderApp();
 
-    expect(screen.getByText('Bienvenue au Grand Cinéma')).toBeInTheDocument();
-    await waitFor(() =>
-      expect(
-        screen.getByText('Le service de réservation est disponible.'),
-      ).toBeInTheDocument(),
-    );
-  });
-
-  it("affiche un message clair si l'API ne répond pas", async () => {
-    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('réseau')));
-    vi.spyOn(console, 'error').mockImplementation(() => {});
-
-    renderApp();
-
-    await waitFor(() =>
-      expect(
-        screen.getByText(
-          'Le service de réservation est momentanément indisponible.',
-        ),
-      ).toBeInTheDocument(),
-    );
+    expect(screen.getByText('Programme de la semaine')).toBeInTheDocument();
+    expect(
+      await screen.findByText('Aucune séance dans les 7 prochains jours.'),
+    ).toBeInTheDocument();
   });
 
   it("passe l'interface en anglais", async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }));
+    mockEmptyProgramme();
 
     renderApp();
     await userEvent.click(screen.getByText('English version'));
 
-    expect(screen.getByText('Welcome to Le Grand Cinéma')).toBeInTheDocument();
+    expect(screen.getByText("This week's programme")).toBeInTheDocument();
   });
 
   it('affiche une page introuvable pour une adresse inconnue', () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }));
+    mockEmptyProgramme();
 
     renderApp('/adresse-inconnue');
 
