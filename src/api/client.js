@@ -119,3 +119,33 @@ export async function cancelBooking(id) {
     return false;
   }
 }
+
+/**
+ * Enregistre les coordonnées du spectateur sans compte (US 2.4)
+ * @param {string} bookingId identifiant de la réservation
+ * @param {object} form { name, email, confirmation, postcode, country }
+ * @returns {Promise<object|null>} le panier, ou null en cas d'erreur
+ */
+export async function saveCustomer(bookingId, form) {
+  try {
+    const path = `/api/booking/bookings/${bookingId}/customer/`;
+    const response = await fetch(`${API_URL}${path}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        customer_name: form.name,
+        customer_email: form.email,
+        email_confirmation: form.confirmation,
+        customer_postcode: form.postcode,
+        customer_country: form.country,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`erreur ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Coordonnées non enregistrées :', error.message);
+    return null;
+  }
+}

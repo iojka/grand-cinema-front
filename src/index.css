@@ -384,6 +384,73 @@ button.seat {
   font-weight: bold;
 }
 
+/* Fil des 4 étapes de la réservation (US 2.4) */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.steps__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--placeholder);
+}
+
+/* Étape en cours : orange de la maquette, texte foncé */
+.steps li[aria-current='step'] {
+  color: var(--text);
+  font-weight: bold;
+}
+
+.steps li[aria-current='step'] .steps__number {
+  background-color: var(--accent);
+}
+
+/* Formulaire des coordonnées : une colonne, champs larges */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 500px;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.form input {
+  padding: 0.5rem;
+  border: 1px solid var(--text-light);
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+.rgpd {
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
+
+.privacy h2 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.125rem;
+}
+
 /* Tablette et ordinateur : en-tête sur une ligne, 2 colonnes de films */
 @media (min-width: 768px) {
   .header {

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useParams } from 'react-router';
 import { getSeatMap, holdSeats } from '../api/client.js';
 import OtherScreenings from '../components/OtherScreenings.jsx';
+import Steps from '../components/Steps.jsx';
 import {
   areSideBySide,
   formatDay,
@@ -89,6 +90,10 @@ function SeatMapPage() {
 
   return (
     <section className="seat-map">
+      <Link className="back" to={`/films/${seatMap.movie.id}`}>
+        {t('seats.back')}
+      </Link>
+      <Steps current={2} />
       <h1>{t('seats.title')}</h1>
       <p className="card__details">
         <Link to={`/films/${seatMap.movie.id}`}>{seatMap.movie.title}</Link> ·{' '}
