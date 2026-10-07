@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router';
 import Header from './components/Header.jsx';
 import HomePage from './pages/HomePage.jsx';
+import MoviePage from './pages/MoviePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 
 // Les pages seront ajoutées au fil des US (programme, fiche film...)
@@ -11,6 +12,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/films/:id" element={<MoviePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
