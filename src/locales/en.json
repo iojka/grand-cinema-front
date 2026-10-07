@@ -24,6 +24,26 @@
     "synopsis": "Synopsis",
     "screenings": "Next screenings"
   },
+  "seats": {
+    "title": "Seating plan",
+    "loading": "Loading the seating plan...",
+    "error": "This screening is not available.",
+    "screen": "Screen",
+    "full": "This screening is sold out.",
+    "others": "Other screenings of this film",
+    "noOthers": "No other screening available for this film.",
+    "status": {
+      "FREE": "available",
+      "HELD": "on hold",
+      "SOLD": "sold"
+    },
+    "legend": {
+      "FREE": "Available",
+      "HELD": "Temporarily on hold",
+      "SOLD": "Sold",
+      "accessible": "Wheelchair space"
+    }
+  },
   "rating": {
     "TP": "All audiences",
     "-12": "Not suitable for under 12s",

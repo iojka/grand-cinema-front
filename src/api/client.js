@@ -36,3 +36,12 @@ export function getProgramme() {
 export function getMovie(id) {
   return getData(`/api/programme/movies/${id}/`);
 }
+
+/**
+ * Récupère le plan de salle d'une séance (US 2.1)
+ * @param {string} id identifiant de la séance
+ * @returns {Promise<object|null>} la séance et ses places, ou null
+ */
+export function getSeatMap(id) {
+  return getData(`/api/booking/screenings/${id}/seats/`);
+}

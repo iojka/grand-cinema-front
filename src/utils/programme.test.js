@@ -5,6 +5,7 @@ import {
   getTime,
   groupByDay,
   groupByMovie,
+  groupByRow,
 } from './programme.js';
 
 // Trois séances comme les renvoie l'API (déjà triées par date et heure)
@@ -44,5 +45,20 @@ describe('fiche film (US 1.3)', () => {
   it('affiche la durée en heures et minutes', () => {
     expect(formatDuration(95)).toBe('1 h 35');
     expect(formatDuration(120)).toBe('2 h 00');
+  });
+});
+
+describe('plan de salle (US 2.1)', () => {
+  it("regroupe les places par rangée, dans l'ordre", () => {
+    const seats = [
+      { id: 1, row: 'A', number: 1 },
+      { id: 2, row: 'A', number: 2 },
+      { id: 3, row: 'B', number: 1 },
+    ];
+
+    const rows = groupByRow(seats);
+
+    expect(rows.map((item) => item.row)).toEqual(['A', 'B']);
+    expect(rows[0].seats).toHaveLength(2);
   });
 });
