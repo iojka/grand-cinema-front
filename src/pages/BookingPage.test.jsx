@@ -198,6 +198,7 @@ describe('BookingPage (US 2.4)', () => {
       email_confirmation: 'marine@example.com',
       customer_postcode: '48000',
       customer_country: '',
+      customer_language: 'fr', // langue de l'e-mail de confirmation (US 3.3)
     });
   });
 

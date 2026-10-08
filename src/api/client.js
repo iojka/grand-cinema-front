@@ -124,9 +124,10 @@ export async function cancelBooking(id) {
  * Enregistre les coordonnées du spectateur sans compte (US 2.4)
  * @param {string} bookingId identifiant de la réservation
  * @param {object} form { name, email, confirmation, postcode, country }
+ * @param {string} language langue du site, pour l'e-mail (US 3.3)
  * @returns {Promise<object|null>} le panier, ou null en cas d'erreur
  */
-export async function saveCustomer(bookingId, form) {
+export async function saveCustomer(bookingId, form, language) {
   try {
     const path = `/api/booking/bookings/${bookingId}/customer/`;
     const response = await fetch(`${API_URL}${path}`, {
@@ -138,6 +139,7 @@ export async function saveCustomer(bookingId, form) {
         email_confirmation: form.confirmation,
         customer_postcode: form.postcode,
         customer_country: form.country,
+        customer_language: language,
       }),
     });
     if (!response.ok) {
@@ -148,6 +150,16 @@ export async function saveCustomer(bookingId, form) {
     console.error('Coordonnées non enregistrées :', error.message);
     return null;
   }
+}
+
+/**
+ * Récupère le récapitulatif de la réservation payée (US 3.3)
+ * @param {string} id identifiant de la réservation
+ * @returns {Promise<object|null>} le récapitulatif, ou null s'il n'y a
+ *   pas de réservation en cours ou confirmée
+ */
+export function getConfirmation(id) {
+  return getData(`/api/booking/bookings/${id}/confirmation/`);
 }
 
 /**
