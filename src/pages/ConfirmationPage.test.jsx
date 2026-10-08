@@ -101,6 +101,20 @@ describe('ConfirmationPage (US 3.3)', () => {
     expect(screen.getByText('Place A2')).toBeInTheDocument();
   });
 
+  it('propose de télécharger les billets à imprimer (US 4.2)', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(answer(CONFIRMED)));
+
+    renderConfirmation();
+
+    // Critère 3 : depuis le lien de l'e-mail, le billet se télécharge
+    const link = await screen.findByRole('link', {
+      name: 'Télécharger mes billets à imprimer (PDF)',
+    });
+    expect(link.getAttribute('href')).toContain(
+      '/api/tickets/bookings/abc/pdf/',
+    );
+  });
+
   it("n'affiche aucune confirmation sans paiement confirmé", async () => {
     vi.stubGlobal(
       'fetch',
