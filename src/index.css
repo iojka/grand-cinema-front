@@ -325,6 +325,14 @@ button.seat {
   background-color: var(--card);
 }
 
+/* Boutons d'action côte à côte, espacés */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
 .button:disabled {
   background-color: var(--placeholder);
   color: var(--text-light);

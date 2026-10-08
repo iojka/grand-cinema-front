@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router';
 import Header from './components/Header.jsx';
 import BookingPage from './pages/BookingPage.jsx';
+import ConfirmationPage from './pages/ConfirmationPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import MoviePage from './pages/MoviePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
@@ -18,6 +19,10 @@ function App() {
           <Route path="/films/:id" element={<MoviePage />} />
           <Route path="/seances/:id" element={<SeatMapPage />} />
           <Route path="/reservation/:id" element={<BookingPage />} />
+          <Route
+            path="/reservation/:id/confirmation"
+            element={<ConfirmationPage />}
+          />
           <Route path="/confidentialite" element={<PrivacyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

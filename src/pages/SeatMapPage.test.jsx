@@ -78,7 +78,7 @@ describe('SeatMapPage (US 2.1)', () => {
     renderSeatMap();
 
     expect(
-      await screen.findByRole('link', { name: '← Retour aux séances du film' }),
+      await screen.findByRole('link', { name: 'Retour aux séances du film' }),
     ).toHaveAttribute('href', '/films/5');
   });
 

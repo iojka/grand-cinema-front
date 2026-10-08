@@ -37,13 +37,20 @@ const UPDATED = {
   ],
 };
 
-// Simule l'API : GET du panier, PATCH du tarif d'une place
+// Adresse de paiement renvoyée par l'API (page Stripe de test)
+const STRIPE_URL = 'https://checkout.stripe.com/c/pay/cs_test_123';
+
+// Simule l'API : GET du panier, PATCH du tarif d'une place, POST du
+// paiement
 function mockApi(booking) {
   const fetchMock = vi.fn((url, options) => {
     if (options && options.method === 'DELETE') {
       return Promise.resolve({ ok: true, status: 204 });
     }
     let data = booking;
+    if (options && options.method === 'POST') {
+      data = { url: STRIPE_URL };
+    }
     if (options && options.method === 'PATCH') {
       data = url.includes('/customer/') ? booking : UPDATED;
     }
@@ -53,9 +60,9 @@ function mockApi(booking) {
   return fetchMock;
 }
 
-function renderBooking() {
+function renderBooking(path = '/reservation/abc') {
   return render(
-    <MemoryRouter initialEntries={['/reservation/abc']}>
+    <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route path="/reservation/:id" element={<BookingPage />} />
         <Route path="/seances/:id" element={<p>Page plan de salle</p>} />
@@ -155,7 +162,7 @@ describe('BookingPage (US 2.3)', () => {
 
 // Remplit le formulaire des coordonnées (US 2.4)
 async function fillCustomer(email, confirmation) {
-  await userEvent.type(await screen.findByLabelText('Nom'), 'Samuel Martin');
+  await userEvent.type(await screen.findByLabelText('Nom'), 'Marine Crognier');
   await userEvent.type(screen.getByLabelText('Adresse e-mail'), email);
   await userEvent.type(
     screen.getByLabelText("Confirmation de l'adresse e-mail"),
@@ -178,7 +185,7 @@ describe('BookingPage (US 2.4)', () => {
     const fetchMock = mockApi(BOOKING);
     renderBooking();
 
-    await fillCustomer('samuel@example.com', 'samuel@example.com');
+    await fillCustomer('marine@example.com', 'marine@example.com');
     await userEvent.click(screen.getByText('Valider mes coordonnées'));
 
     expect(
@@ -186,9 +193,9 @@ describe('BookingPage (US 2.4)', () => {
     ).toBeInTheDocument();
     const [, options] = customerCalls(fetchMock)[0];
     expect(JSON.parse(options.body)).toEqual({
-      customer_name: 'Samuel Martin',
-      customer_email: 'samuel@example.com',
-      email_confirmation: 'samuel@example.com',
+      customer_name: 'Marine Crognier',
+      customer_email: 'marine@example.com',
+      email_confirmation: 'marine@example.com',
       customer_postcode: '48000',
       customer_country: '',
     });
@@ -198,7 +205,7 @@ describe('BookingPage (US 2.4)', () => {
     const fetchMock = mockApi(BOOKING);
     renderBooking();
 
-    await fillCustomer('samuel.example.com', 'samuel.example.com');
+    await fillCustomer('marine.example.com', 'marine.example.com');
     await userEvent.click(screen.getByText('Valider mes coordonnées'));
 
     expect(
@@ -218,5 +225,62 @@ describe('BookingPage (US 2.4)', () => {
     expect(link).toHaveAttribute('href', '/confidentialite');
     // Nouvel onglet : le panier et le formulaire restent ouverts
     expect(link).toHaveAttribute('target', '_blank');
+  });
+});
+
+// Panier dont les coordonnées sont déjà enregistrées (US 2.4)
+const WITH_CUSTOMER = {
+  ...BOOKING,
+  customer_name: 'Marine Crognier',
+  customer_email: 'marine@example.com',
+  customer_postcode: '48000',
+  customer_country: '',
+};
+
+describe('BookingPage (US 3.1)', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('propose le paiement une fois les coordonnées enregistrées', async () => {
+    mockApi(BOOKING);
+    renderBooking();
+
+    await fillCustomer('marine@example.com', 'marine@example.com');
+    expect(screen.queryByRole('button', { name: /^Payer/ })).toBeNull();
+    await userEvent.click(screen.getByText('Valider mes coordonnées'));
+
+    expect(
+      await screen.findByRole('button', { name: /^Payer/ }),
+    ).toBeInTheDocument();
+  });
+
+  it('redirige vers la page de paiement sécurisée Stripe', async () => {
+    const fetchMock = mockApi(WITH_CUSTOMER);
+    // Faux window.location : on vérifie la redirection sans quitter le test
+    const assign = vi.fn();
+    vi.stubGlobal('location', { ...window.location, assign });
+    renderBooking();
+
+    await userEvent.click(
+      await screen.findByRole('button', { name: /^Payer/ }),
+    );
+
+    const [url] = fetchMock.mock.calls.find(
+      ([, request]) => request && request.method === 'POST',
+    );
+    expect(url).toContain('/api/payment/bookings/abc/checkout/');
+    expect(assign).toHaveBeenCalledWith(STRIPE_URL);
+  });
+
+  it('signale un paiement abandonné et permet de réessayer', async () => {
+    mockApi(WITH_CUSTOMER);
+
+    renderBooking('/reservation/abc?paiement=annule');
+
+    expect(
+      await screen.findByText(/Le paiement n'a pas abouti/),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^Payer/ })).toBeInTheDocument();
   });
 });

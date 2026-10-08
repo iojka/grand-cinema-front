@@ -1,20 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate, useParams } from 'react-router';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import {
   cancelBooking,
   changeTicketPrice,
   getBooking,
   saveCustomer,
+  startCheckout,
 } from '../api/client.js';
 import Steps from '../components/Steps.jsx';
 import { checkCustomer } from '../utils/customer.js';
 import { formatDay, formatPrice, getDay, getTime } from '../utils/programme.js';
 
 // Panier : un tarif par place et le total, pendant le blocage de
-// 10 minutes (US 2.3), puis les coordonnées du spectateur (US 2.4)
+// 10 minutes (US 2.3), les coordonnées du spectateur (US 2.4), puis le
+// paiement par carte (US 3.1)
 function BookingPage() {
   const { id } = useParams(); // identifiant de la réservation
+  // ?paiement=annule : retour de Stripe sans paiement (critère 3)
+  const [searchParams] = useSearchParams();
+  const cancelled = searchParams.get('paiement') === 'annule';
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [booking, setBooking] = useState(null); // null = chargement
@@ -30,6 +35,7 @@ function BookingPage() {
   });
   const [formError, setFormError] = useState('');
   const [saved, setSaved] = useState(false);
+  const [payError, setPayError] = useState(false);
 
   useEffect(() => {
     getBooking(id).then((data) => {
@@ -37,6 +43,17 @@ function BookingPage() {
         setError(true);
       } else {
         setBooking(data);
+        // Coordonnées déjà enregistrées (retour de la page de paiement)
+        if (data.customer_email) {
+          setForm({
+            name: data.customer_name,
+            email: data.customer_email,
+            confirmation: data.customer_email,
+            postcode: data.customer_postcode,
+            country: data.customer_country,
+          });
+          setSaved(true);
+        }
       }
     });
   }, [id]);
@@ -86,6 +103,17 @@ function BookingPage() {
     }
   }
 
+  // Paiement : redirection vers la page sécurisée de Stripe, qui gère
+  // la carte et le 3D Secure (critère 1)
+  async function handlePay() {
+    const url = await startCheckout(booking.id);
+    if (url === null) {
+      setPayError(true);
+    } else {
+      window.location.assign(url);
+    }
+  }
+
   // Changer de places : le panier est annulé (places libérées) et le
   // spectateur revient au plan de salle (critère 2)
   async function handleChangeSeats() {
@@ -125,8 +153,13 @@ function BookingPage() {
   const screening = booking.screening;
   return (
     <section className="basket">
-      <Steps current={3} />
+      <Steps current={saved ? 4 : 3} />
       <h1>{t('booking.title')}</h1>
+      {cancelled && (
+        <p role="alert" className="message">
+          {t('payment.cancelled', { time: getTime(booking.expires_at) })}
+        </p>
+      )}
       <p className="card__details">
         {screening.movie.title} ·{' '}
         {formatDay(getDay(screening.starts_at), i18n.language)} ·{' '}
@@ -227,18 +260,36 @@ function BookingPage() {
       </form>
 
       {saved && (
-        <div role="status" className="message">
-          <p>{t('customer.saved')}</p>
-          <p>{t('customer.next')}</p>
-        </div>
+        <>
+          <div role="status" className="message">
+            <p>{t('customer.saved')}</p>
+            <p>{t('customer.next')}</p>
+          </div>
+          <p>{t('payment.secure')}</p>
+          {payError && (
+            <p role="alert" className="message">
+              {t('payment.error')}
+            </p>
+          )}
+        </>
       )}
-      <button
-        type="button"
-        className="button button--secondary"
-        onClick={handleChangeSeats}
-      >
-        {t('booking.changeSeats')}
-      </button>
+      {/* Boutons espacés, qui passent à la ligne sur mobile */}
+      <div className="buttons">
+        {saved && (
+          <button type="button" className="button" onClick={handlePay}>
+            {t('payment.pay', {
+              total: formatPrice(booking.total_amount, i18n.language),
+            })}
+          </button>
+        )}
+        <button
+          type="button"
+          className="button button--secondary"
+          onClick={handleChangeSeats}
+        >
+          {t('booking.changeSeats')}
+        </button>
+      </div>
     </section>
   );
 }
