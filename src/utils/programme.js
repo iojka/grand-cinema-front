@@ -36,6 +36,21 @@ export function formatDay(date, language) {
 }
 
 /**
+ * Affiche un jour en entier, sans abréviation, par exemple "jeudi 8 octobre"
+ * (billets, US 4.1)
+ * @param {string} date jour au format "2026-10-08"
+ * @param {string} language langue de l'interface ("fr" ou "en")
+ * @returns {string} le jour à afficher
+ */
+export function formatLongDay(date, language) {
+  return new Date(`${date}T12:00:00`).toLocaleDateString(language, {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  });
+}
+
+/**
  * Regroupe les séances par jour, en gardant l'ordre de l'API
  * @param {Array} screenings séances triées par date et heure
  * @returns {Array} liste de { date, screenings }

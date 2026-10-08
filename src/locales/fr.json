@@ -105,8 +105,12 @@
     "room": "Salle",
     "seats": "Places",
     "total": "Montant payé",
-    "email": "Un e-mail de confirmation vous a été envoyé.",
-    "error": "Aucune réservation confirmée ne correspond à cette adresse."
+    "email": "Un e-mail de confirmation avec vos billets vous a été envoyé.",
+    "error": "Aucune réservation confirmée ne correspond à cette adresse.",
+    "tickets": "Vos billets",
+    "show": "Présentez le QR code de chaque billet à l'entrée de la salle.",
+    "qr": "QR code du billet {{seat}}",
+    "at": "{{day}} à {{time}}"
   },
   "privacy": {
     "title": "Politique de confidentialité",
