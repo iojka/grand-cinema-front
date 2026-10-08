@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   areSideBySide,
   formatDuration,
+  formatLongDay,
   formatPrice,
   getDay,
   getTime,
@@ -79,5 +80,11 @@ describe('choix des places (US 2.2)', () => {
 
   it('affiche un prix en euros', () => {
     expect(formatPrice('22.00', 'fr')).toMatch(/22,00/);
+  });
+});
+
+describe('billet (US 4.1)', () => {
+  it('écrit le jour en entier, sans abréviation', () => {
+    expect(formatLongDay('2026-10-08', 'fr')).toBe('jeudi 8 octobre');
   });
 });

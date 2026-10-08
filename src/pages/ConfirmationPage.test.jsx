@@ -57,8 +57,9 @@ describe('ConfirmationPage (US 3.3)', () => {
       }),
     ).toBeInTheDocument();
     expect(screen.getByText('QXHZDJMA')).toBeInTheDocument();
-    expect(screen.getByText('La dernière séance')).toBeInTheDocument();
-    expect(screen.getByText('Salle 9 - Événementielle')).toBeInTheDocument();
+    // Film et salle : dans le récapitulatif et sur chacun des 2 billets
+    expect(screen.getAllByText('La dernière séance')).toHaveLength(3);
+    expect(screen.getAllByText('Salle 9 - Événementielle')).toHaveLength(3);
     expect(screen.getByText('A1, A2')).toBeInTheDocument();
     expect(screen.getByText(/22,00/)).toBeInTheDocument();
     expect(screen.getByText(/e-mail de confirmation/)).toBeInTheDocument();
@@ -84,6 +85,20 @@ describe('ConfirmationPage (US 3.3)', () => {
     ).toBeInTheDocument();
     await vi.advanceTimersByTimeAsync(4000);
     expect(await screen.findByText('QXHZDJMA')).toBeInTheDocument();
+  });
+
+  it('affiche un billet QR code par place (US 4.1)', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(answer(CONFIRMED)));
+
+    renderConfirmation();
+
+    // Critère 1 : le QR code du billet, servi par l'API
+    const qrCode = await screen.findByAltText('QR code du billet A1');
+    expect(qrCode.getAttribute('src')).toContain('/api/tickets/t1/qr/');
+    expect(screen.getByAltText('QR code du billet A2')).toBeInTheDocument();
+    // Critère 3 : chaque billet mentionne sa place
+    expect(screen.getByText('Place A1')).toBeInTheDocument();
+    expect(screen.getByText('Place A2')).toBeInTheDocument();
   });
 
   it("n'affiche aucune confirmation sans paiement confirmé", async () => {
