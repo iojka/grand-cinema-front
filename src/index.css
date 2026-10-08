@@ -482,3 +482,21 @@ button.seat {
     justify-self: start;
   }
 }
+
+/* Récapitulatif de la réservation payée (US 3.3) */
+.recap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--card);
+}
+
+.recap dt {
+  font-weight: bold;
+}
+
+.recap dd {
+  margin: 0;
+}

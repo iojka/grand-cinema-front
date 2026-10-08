@@ -93,7 +93,8 @@ function BookingPage() {
       setFormError(t(`customer.errors.${problem}`));
       return;
     }
-    const data = await saveCustomer(booking.id, form);
+    // La langue du site sert à l'e-mail de confirmation (US 3.3)
+    const data = await saveCustomer(booking.id, form, i18n.language);
     if (data === null) {
       setFormError(t('customer.errors.server'));
     } else {

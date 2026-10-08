@@ -98,7 +98,15 @@
   },
   "confirmation": {
     "title": "Thank you for your booking",
-    "text": "Your payment has been sent. Your booking will be confirmed once Stripe validates it and your ticket will be emailed to you."
+    "pending": "Payment being validated by Stripe...",
+    "reference": "Booking number",
+    "movie": "Film",
+    "date": "Date and time",
+    "room": "Screen",
+    "seats": "Seats",
+    "total": "Amount paid",
+    "email": "A confirmation email has been sent to you.",
+    "error": "No confirmed booking matches this address."
   },
   "privacy": {
     "title": "Privacy policy",

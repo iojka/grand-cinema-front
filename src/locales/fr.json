@@ -98,7 +98,15 @@
   },
   "confirmation": {
     "title": "Merci pour votre réservation",
-    "text": "Votre paiement a bien été transmis. Votre réservation sera confirmée dès sa validation par Stripe et votre billet vous sera envoyé par e-mail."
+    "pending": "Paiement en cours de validation par Stripe...",
+    "reference": "Numéro de réservation",
+    "movie": "Film",
+    "date": "Date et heure",
+    "room": "Salle",
+    "seats": "Places",
+    "total": "Montant payé",
+    "email": "Un e-mail de confirmation vous a été envoyé.",
+    "error": "Aucune réservation confirmée ne correspond à cette adresse."
   },
   "privacy": {
     "title": "Politique de confidentialité",
