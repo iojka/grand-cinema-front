@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router';
-import { getConfirmation, ticketQrUrl } from '../api/client.js';
+import { getConfirmation, ticketQrUrl, ticketsPdfUrl } from '../api/client.js';
 import Steps from '../components/Steps.jsx';
 import {
   formatLongDay,
@@ -93,6 +93,11 @@ function ConfirmationPage() {
       {/* US 4.1 : un billet par place, avec son QR code (critères 1 et 3) */}
       <h2>{t('confirmation.tickets')}</h2>
       <p>{t('confirmation.show')}</p>
+      {/* US 4.2 : billets à imprimer, téléchargeables autant de fois que
+          nécessaire (le lien de l'e-mail ramène sur cette page) */}
+      <a className="button ticket-download" href={ticketsPdfUrl(booking.id)}>
+        {t('confirmation.pdf')}
+      </a>
       <ul className="ticket-list">
         {booking.tickets.map((ticket) => (
           <li key={ticket.id} className="ticket">

@@ -110,7 +110,8 @@
     "tickets": "Vos billets",
     "show": "Présentez le QR code de chaque billet à l'entrée de la salle.",
     "qr": "QR code du billet {{seat}}",
-    "at": "{{day}} à {{time}}"
+    "at": "{{day}} à {{time}}",
+    "pdf": "Télécharger mes billets à imprimer (PDF)"
   },
   "privacy": {
     "title": "Politique de confidentialité",

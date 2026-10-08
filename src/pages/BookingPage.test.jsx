@@ -4,12 +4,16 @@ import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import BookingPage from './BookingPage.jsx';
 
+// Fin du blocage dans 10 minutes, calculée au lancement des tests : une
+// date écrite en dur ferait échouer les tests une fois cette date passée
+const IN_TEN_MINUTES = new Date(Date.now() + 10 * 60 * 1000).toISOString();
+
 // Panier de test : A1 et A2 au plein tarif dans une salle IMAX (+2 €)
 const BOOKING = {
   id: 'abc',
   reference: 'LPNLT2HX',
   status: 'PENDING',
-  expires_at: '2026-10-08T20:40:00+02:00',
+  expires_at: IN_TEN_MINUTES,
   total_amount: '26.00',
   screening: {
     id: 1,

@@ -110,7 +110,8 @@
     "tickets": "Your tickets",
     "show": "Show the QR code of each ticket at the entrance.",
     "qr": "QR code for ticket {{seat}}",
-    "at": "{{day}} at {{time}}"
+    "at": "{{day}} at {{time}}",
+    "pdf": "Download my tickets to print (PDF)"
   },
   "privacy": {
     "title": "Privacy policy",
