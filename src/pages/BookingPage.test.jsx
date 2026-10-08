@@ -43,7 +43,10 @@ function mockApi(booking) {
     if (options && options.method === 'DELETE') {
       return Promise.resolve({ ok: true, status: 204 });
     }
-    const data = options && options.method === 'PATCH' ? UPDATED : booking;
+    let data = booking;
+    if (options && options.method === 'PATCH') {
+      data = url.includes('/customer/') ? booking : UPDATED;
+    }
     return Promise.resolve({ ok: true, json: () => Promise.resolve(data) });
   });
   vi.stubGlobal('fetch', fetchMock);
@@ -147,5 +150,73 @@ describe('BookingPage (US 2.3)', () => {
         'Votre blocage a expiré : vos places ont été libérées.',
       ),
     ).toBeInTheDocument();
+  });
+});
+
+// Remplit le formulaire des coordonnées (US 2.4)
+async function fillCustomer(email, confirmation) {
+  await userEvent.type(await screen.findByLabelText('Nom'), 'Samuel Martin');
+  await userEvent.type(screen.getByLabelText('Adresse e-mail'), email);
+  await userEvent.type(
+    screen.getByLabelText("Confirmation de l'adresse e-mail"),
+    confirmation,
+  );
+  await userEvent.type(screen.getByLabelText('Code postal'), '48000');
+}
+
+// Appels PATCH envoyés pour les coordonnées
+function customerCalls(fetchMock) {
+  return fetchMock.mock.calls.filter(([url]) => url.includes('/customer/'));
+}
+
+describe('BookingPage (US 2.4)', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('enregistre les coordonnées du spectateur sans compte', async () => {
+    const fetchMock = mockApi(BOOKING);
+    renderBooking();
+
+    await fillCustomer('samuel@example.com', 'samuel@example.com');
+    await userEvent.click(screen.getByText('Valider mes coordonnées'));
+
+    expect(
+      await screen.findByText('Vos coordonnées sont enregistrées.'),
+    ).toBeInTheDocument();
+    const [, options] = customerCalls(fetchMock)[0];
+    expect(JSON.parse(options.body)).toEqual({
+      customer_name: 'Samuel Martin',
+      customer_email: 'samuel@example.com',
+      email_confirmation: 'samuel@example.com',
+      customer_postcode: '48000',
+      customer_country: '',
+    });
+  });
+
+  it("signale une adresse e-mail non valide avant l'envoi", async () => {
+    const fetchMock = mockApi(BOOKING);
+    renderBooking();
+
+    await fillCustomer('samuel.example.com', 'samuel.example.com');
+    await userEvent.click(screen.getByText('Valider mes coordonnées'));
+
+    expect(
+      screen.getByText("L'adresse e-mail n'est pas valide."),
+    ).toBeInTheDocument();
+    expect(customerCalls(fetchMock)).toHaveLength(0);
+  });
+
+  it("affiche l'information RGPD et le lien vers la politique", async () => {
+    mockApi(BOOKING);
+    renderBooking();
+
+    expect(await screen.findByText(/conservées 3 ans/)).toBeInTheDocument();
+    const link = screen.getByRole('link', {
+      name: 'Politique de confidentialité',
+    });
+    expect(link).toHaveAttribute('href', '/confidentialite');
+    // Nouvel onglet : le panier et le formulaire restent ouverts
+    expect(link).toHaveAttribute('target', '_blank');
   });
 });

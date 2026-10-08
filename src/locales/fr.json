@@ -49,7 +49,8 @@
     "selected_other": "{{count}} places sélectionnées",
     "notSideBySide": "Choisissez des places côte à côte, dans la même rangée.",
     "taken": "Une des places vient d'être prise. Le plan a été mis à jour, choisissez d'autres places.",
-    "holdError": "La réservation est momentanément indisponible."
+    "holdError": "La réservation est momentanément indisponible.",
+    "back": "← Retour aux séances du film"
   },
   "booking": {
     "title": "Votre panier",
@@ -59,10 +60,63 @@
     "seat": "Place {{seat}}",
     "total": "Total : {{total}}",
     "proof": "Un justificatif sera demandé à l'entrée pour les tarifs réduits.",
-    "next": "Prochaine étape : vos coordonnées.",
     "expired": "Votre blocage a expiré : vos places ont été libérées.",
     "back": "Revenir au plan de salle",
     "changeSeats": "Modifier mes places"
+  },
+  "steps": {
+    "title": "Étapes de la réservation",
+    "screening": "Séance",
+    "seats": "Places",
+    "customer": "Coordonnées",
+    "payment": "Paiement"
+  },
+  "customer": {
+    "title": "Vos coordonnées",
+    "name": "Nom",
+    "email": "Adresse e-mail",
+    "confirmation": "Confirmation de l'adresse e-mail",
+    "postcode": "Code postal",
+    "country": "Pays, si vous habitez hors de France (code à 2 lettres, par exemple DE)",
+    "rgpd": "Vos coordonnées servent uniquement à gérer votre réservation, à vous envoyer votre billet et à établir des statistiques anonymes de fréquentation. Elles sont conservées 3 ans après la séance.",
+    "submit": "Valider mes coordonnées",
+    "saved": "Vos coordonnées sont enregistrées.",
+    "next": "Prochaine étape : le paiement.",
+    "errors": {
+      "name": "Indiquez votre nom.",
+      "email": "L'adresse e-mail n'est pas valide.",
+      "confirmation": "Les deux adresses e-mail sont différentes.",
+      "place": "Indiquez votre code postal ou votre pays.",
+      "server": "Vos coordonnées n'ont pas pu être enregistrées. Vérifiez-les et réessayez."
+    }
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "intro": "Le Grand Cinéma (Mende) est responsable du traitement des données collectées lors d'une réservation en ligne.",
+    "data": {
+      "title": "Données collectées",
+      "text": "Nom, adresse e-mail, code postal ou pays, places et tarifs réservés. Aucune donnée de carte bancaire : le paiement est traité par notre prestataire Stripe."
+    },
+    "purposes": {
+      "title": "Finalités",
+      "text": "Gérer votre réservation, vous envoyer votre billet et établir des statistiques anonymes de fréquentation (origine géographique des spectateurs, notamment pendant le festival)."
+    },
+    "legal": {
+      "title": "Base légale",
+      "text": "Exécution du contrat de vente de billets."
+    },
+    "retention": {
+      "title": "Durée de conservation",
+      "text": "Vos coordonnées sont conservées 3 ans après la séance, puis supprimées. Les statistiques ne permettent pas de vous identifier."
+    },
+    "recipients": {
+      "title": "Destinataires et hébergement",
+      "text": "Le personnel habilité du cinéma et Stripe pour le paiement. Les données sont hébergées en France (Microsoft Azure, région France Central)."
+    },
+    "rights": {
+      "title": "Vos droits",
+      "text": "Vous pouvez demander l'accès, la rectification ou l'effacement de vos données en écrivant à dpo@legrandcinema.test. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr)."
+    }
   },
   "rating": {
     "TP": "Tous publics",

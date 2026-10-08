@@ -49,7 +49,8 @@
     "selected_other": "{{count}} seats selected",
     "notSideBySide": "Choose seats side by side, in the same row.",
     "taken": "One of the seats has just been taken. The plan has been updated, please choose other seats.",
-    "holdError": "Booking is temporarily unavailable."
+    "holdError": "Booking is temporarily unavailable.",
+    "back": "← Back to the film's screenings"
   },
   "booking": {
     "title": "Your basket",
@@ -59,10 +60,63 @@
     "seat": "Seat {{seat}}",
     "total": "Total: {{total}}",
     "proof": "Proof of eligibility will be checked at the entrance for reduced fares.",
-    "next": "Next step: your contact details.",
     "expired": "Your hold has expired: your seats have been released.",
     "back": "Back to the seating plan",
     "changeSeats": "Change my seats"
+  },
+  "steps": {
+    "title": "Booking steps",
+    "screening": "Screening",
+    "seats": "Seats",
+    "customer": "Contact details",
+    "payment": "Payment"
+  },
+  "customer": {
+    "title": "Your contact details",
+    "name": "Name",
+    "email": "Email address",
+    "confirmation": "Confirm your email address",
+    "postcode": "Postcode",
+    "country": "Country, if you live outside France (2-letter code, for example DE)",
+    "rgpd": "Your details are only used to manage your booking, send you your ticket and produce anonymous attendance statistics. They are kept for 3 years after the screening.",
+    "submit": "Confirm my details",
+    "saved": "Your details have been saved.",
+    "next": "Next step: payment.",
+    "errors": {
+      "name": "Please enter your name.",
+      "email": "The email address is not valid.",
+      "confirmation": "The two email addresses are different.",
+      "place": "Please enter your postcode or your country.",
+      "server": "Your details could not be saved. Please check them and try again."
+    }
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "intro": "Le Grand Cinéma (Mende) is responsible for the data collected when you book online.",
+    "data": {
+      "title": "Data collected",
+      "text": "Name, email address, postcode or country, booked seats and fares. No card data: payment is handled by our provider Stripe."
+    },
+    "purposes": {
+      "title": "Purposes",
+      "text": "Managing your booking, sending you your ticket and producing anonymous attendance statistics (where spectators come from, especially during the festival)."
+    },
+    "legal": {
+      "title": "Legal basis",
+      "text": "Performance of the ticket sale contract."
+    },
+    "retention": {
+      "title": "Retention period",
+      "text": "Your details are kept for 3 years after the screening, then deleted. Statistics cannot identify you."
+    },
+    "recipients": {
+      "title": "Recipients and hosting",
+      "text": "Authorised cinema staff and Stripe for payment. Data is hosted in France (Microsoft Azure, France Central region)."
+    },
+    "rights": {
+      "title": "Your rights",
+      "text": "You can ask to access, correct or delete your data by writing to dpo@legrandcinema.test. You can also lodge a complaint with the CNIL (cnil.fr)."
+    }
   },
   "rating": {
     "TP": "All audiences",

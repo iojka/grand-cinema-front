@@ -72,6 +72,16 @@ describe('SeatMapPage (US 2.1)', () => {
     expect(screen.getByText('Vendue')).toBeInTheDocument();
   });
 
+  it('propose de revenir aux séances du film', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response(SEAT_MAP)));
+
+    renderSeatMap();
+
+    expect(
+      await screen.findByRole('link', { name: '← Retour aux séances du film' }),
+    ).toHaveAttribute('href', '/films/5');
+  });
+
   it('met à jour le plan toutes les 4 secondes', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     const sold = {

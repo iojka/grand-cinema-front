@@ -4,6 +4,7 @@ import BookingPage from './pages/BookingPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import MoviePage from './pages/MoviePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
+import PrivacyPage from './pages/PrivacyPage.jsx';
 import SeatMapPage from './pages/SeatMapPage.jsx';
 
 // Les pages seront ajoutées au fil des US (programme, fiche film...)
@@ -17,6 +18,7 @@ function App() {
           <Route path="/films/:id" element={<MoviePage />} />
           <Route path="/seances/:id" element={<SeatMapPage />} />
           <Route path="/reservation/:id" element={<BookingPage />} />
+          <Route path="/confidentialite" element={<PrivacyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
