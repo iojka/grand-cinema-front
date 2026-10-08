@@ -16,7 +16,7 @@
     "youngAudience": "Young audience"
   },
   "movie": {
-    "back": "← Back to the programme",
+    "back": "Back to the programme",
     "loading": "Loading the film...",
     "error": "This film cannot be found.",
     "poster": "Poster of the film {{title}}",
@@ -50,7 +50,7 @@
     "notSideBySide": "Choose seats side by side, in the same row.",
     "taken": "One of the seats has just been taken. The plan has been updated, please choose other seats.",
     "holdError": "Booking is temporarily unavailable.",
-    "back": "← Back to the film's screenings"
+    "back": "Back to the film's screenings"
   },
   "booking": {
     "title": "Your basket",
@@ -89,6 +89,16 @@
       "place": "Please enter your postcode or your country.",
       "server": "Your details could not be saved. Please check them and try again."
     }
+  },
+  "payment": {
+    "pay": "Pay {{total}}",
+    "secure": "You will be redirected to the secure payment page of our provider Stripe (3D Secure authentication). The cinema does not store any card data.",
+    "cancelled": "The payment did not go through (card declined or payment cancelled). Your seats remain held until {{time}}: you can try again.",
+    "error": "Payment is temporarily unavailable. Please try again in a few moments."
+  },
+  "confirmation": {
+    "title": "Thank you for your booking",
+    "text": "Your payment has been sent. Your booking will be confirmed once Stripe validates it and your ticket will be emailed to you."
   },
   "privacy": {
     "title": "Privacy policy",

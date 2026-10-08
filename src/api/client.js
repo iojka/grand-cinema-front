@@ -149,3 +149,24 @@ export async function saveCustomer(bookingId, form) {
     return null;
   }
 }
+
+/**
+ * Demande l'adresse de la page de paiement sécurisée Stripe (US 3.1)
+ * @param {string} bookingId identifiant de la réservation
+ * @returns {Promise<string|null>} l'adresse de la page, ou null en cas
+ *   d'erreur
+ */
+export async function startCheckout(bookingId) {
+  try {
+    const path = `/api/payment/bookings/${bookingId}/checkout/`;
+    const response = await fetch(`${API_URL}${path}`, { method: 'POST' });
+    if (!response.ok) {
+      throw new Error(`erreur ${response.status}`);
+    }
+    const data = await response.json();
+    return data.url;
+  } catch (error) {
+    console.error('Paiement indisponible :', error.message);
+    return null;
+  }
+}

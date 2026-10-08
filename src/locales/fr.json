@@ -16,7 +16,7 @@
     "youngAudience": "Jeune public"
   },
   "movie": {
-    "back": "← Retour au programme",
+    "back": "Retour au programme",
     "loading": "Chargement du film...",
     "error": "Ce film est introuvable.",
     "poster": "Affiche du film {{title}}",
@@ -50,7 +50,7 @@
     "notSideBySide": "Choisissez des places côte à côte, dans la même rangée.",
     "taken": "Une des places vient d'être prise. Le plan a été mis à jour, choisissez d'autres places.",
     "holdError": "La réservation est momentanément indisponible.",
-    "back": "← Retour aux séances du film"
+    "back": "Retour aux séances du film"
   },
   "booking": {
     "title": "Votre panier",
@@ -89,6 +89,16 @@
       "place": "Indiquez votre code postal ou votre pays.",
       "server": "Vos coordonnées n'ont pas pu être enregistrées. Vérifiez-les et réessayez."
     }
+  },
+  "payment": {
+    "pay": "Payer {{total}}",
+    "secure": "Vous allez être redirigé vers la page de paiement sécurisée de notre prestataire Stripe (authentification 3D Secure). Le cinéma ne conserve aucune donnée de carte.",
+    "cancelled": "Le paiement n'a pas abouti (carte refusée ou paiement abandonné). Vos places restent bloquées jusqu'à {{time}} : vous pouvez réessayer.",
+    "error": "Le paiement est momentanément indisponible. Réessayez dans quelques instants."
+  },
+  "confirmation": {
+    "title": "Merci pour votre réservation",
+    "text": "Votre paiement a bien été transmis. Votre réservation sera confirmée dès sa validation par Stripe et votre billet vous sera envoyé par e-mail."
   },
   "privacy": {
     "title": "Politique de confidentialité",
