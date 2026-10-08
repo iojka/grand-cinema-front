@@ -481,6 +481,11 @@ button.seat {
   .movie__poster {
     justify-self: start;
   }
+
+  /* Billets QR code sur 2 colonnes */
+  .ticket-list {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* Récapitulatif de la réservation payée (US 3.3) */
@@ -499,4 +504,35 @@ button.seat {
 
 .recap dd {
   margin: 0;
+}
+
+/* Billets QR code (US 4.1) : un par place */
+.ticket-list {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ticket {
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--card);
+  text-align: center;
+}
+
+.ticket img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 0.5rem;
+}
+
+.ticket p {
+  margin: 0.25rem 0;
+}
+
+.ticket__movie {
+  font-weight: bold;
 }

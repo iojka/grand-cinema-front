@@ -163,6 +163,15 @@ export function getConfirmation(id) {
 }
 
 /**
+ * Adresse de l'image du QR code d'un billet, servie par l'API (US 4.1)
+ * @param {string} ticketId identifiant du billet
+ * @returns {string} l'adresse de l'image PNG
+ */
+export function ticketQrUrl(ticketId) {
+  return `${API_URL}/api/tickets/${ticketId}/qr/`;
+}
+
+/**
  * Demande l'adresse de la page de paiement sécurisée Stripe (US 3.1)
  * @param {string} bookingId identifiant de la réservation
  * @returns {Promise<string|null>} l'adresse de la page, ou null en cas
