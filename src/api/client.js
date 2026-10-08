@@ -172,6 +172,15 @@ export function ticketQrUrl(ticketId) {
 }
 
 /**
+ * Adresse des billets à imprimer (PDF A4) d'une réservation (US 4.2)
+ * @param {string} bookingId identifiant de la réservation
+ * @returns {string} l'adresse du PDF à télécharger
+ */
+export function ticketsPdfUrl(bookingId) {
+  return `${API_URL}/api/tickets/bookings/${bookingId}/pdf/`;
+}
+
+/**
  * Demande l'adresse de la page de paiement sécurisée Stripe (US 3.1)
  * @param {string} bookingId identifiant de la réservation
  * @returns {Promise<string|null>} l'adresse de la page, ou null en cas
