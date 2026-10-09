@@ -149,3 +149,15 @@ export function formatPrice(amount, language) {
     currency: 'EUR',
   });
 }
+
+/**
+ * Donne la date du jour au format de l'API, par exemple "2026-10-09"
+ * (suivi des réservations, US 7.1)
+ * @returns {string} la date du jour, à l'heure de l'appareil
+ */
+export function todayDate() {
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${now.getFullYear()}-${month}-${day}`;
+}

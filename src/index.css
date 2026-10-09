@@ -686,3 +686,55 @@ button.seat {
   background-color: var(--card);
   box-shadow: var(--shadow);
 }
+
+/* Suivi des réservations (US 7.1) : filtres et tableau des séances */
+.tracking__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.tracking__filters div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tracking__filters label {
+  font-weight: bold;
+}
+
+.tracking__filters input,
+.tracking__filters select {
+  padding: 0.5rem;
+  border: 1px solid var(--text-light);
+  border-radius: var(--radius);
+  background-color: var(--card);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.tracking__updated {
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
+
+/* Sur téléphone, le tableau défile horizontalement */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.tracking__table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card);
+}
+
+.tracking__table th,
+.tracking__table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--placeholder);
+  text-align: left;
+  white-space: nowrap;
+}

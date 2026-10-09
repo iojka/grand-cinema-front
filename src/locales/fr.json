@@ -139,7 +139,8 @@
     "screening": "Séance",
     "choose": "Choisissez une séance",
     "boxOffice": "Vente au guichet",
-    "scan": "Contrôle des billets"
+    "scan": "Contrôle des billets",
+    "tracking": "Suivi des réservations"
   },
   "scan": {
     "title": "Contrôle des billets",
@@ -163,6 +164,22 @@
     "pending_one": "{{count}} entrée validée hors ligne à envoyer",
     "pending_other": "{{count}} entrées validées hors ligne à envoyer",
     "send": "Envoyer"
+  },
+  "tracking": {
+    "title": "Suivi des réservations",
+    "date": "Date",
+    "room": "Salle",
+    "allRooms": "Toutes les salles",
+    "time": "Heure",
+    "movie": "Film",
+    "sold": "Vendues / capacité",
+    "rate": "Taux",
+    "web": "Web",
+    "boxOffice": "Guichet",
+    "loading": "Chargement du suivi...",
+    "empty": "Aucune séance ce jour-là.",
+    "error": "Le suivi n'a pas pu être mis à jour : les chiffres affichés peuvent dater.",
+    "updated": "Mis à jour à {{time}}"
   },
   "privacy": {
     "title": "Politique de confidentialité",

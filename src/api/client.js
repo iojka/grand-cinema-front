@@ -332,3 +332,24 @@ export async function checkIn(token, bookingId) {
     return null;
   }
 }
+
+/**
+ * Récupère le suivi des réservations des séances d'un jour (US 7.1)
+ * @param {string} token jeton JWT du membre du personnel connecté
+ * @param {string} day jour suivi, par exemple "2026-10-09"
+ * @returns {Promise<object|null>} { status, data }, ou null si l'API ne
+ *   répond pas
+ */
+export async function getTracking(token, day) {
+  try {
+    const response = await fetch(
+      `${API_URL}/api/booking/tracking/?date=${day}`,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+    const data = await response.json();
+    return { status: response.status, data };
+  } catch (error) {
+    console.error('Suivi indisponible :', error.message);
+    return null;
+  }
+}
