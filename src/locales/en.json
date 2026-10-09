@@ -124,8 +124,6 @@
   },
   "boxOffice": {
     "title": "Box office sale",
-    "screening": "Screening",
-    "choose": "Choose a screening",
     "payment": "Payment method",
     "methods": {
       "CASH": "Cash",
@@ -136,6 +134,35 @@
     "print": "Print the tickets (PDF)",
     "forbidden": "Your account does not have access to box office sales.",
     "error": "The sale could not be recorded. Please try again."
+  },
+  "staff": {
+    "screening": "Screening",
+    "choose": "Choose a screening",
+    "boxOffice": "Box office sale",
+    "scan": "Ticket check"
+  },
+  "scan": {
+    "title": "Ticket check",
+    "results": {
+      "VALID": "Entry accepted",
+      "ALREADY_SCANNED": "Ticket already scanned",
+      "OTHER_SCREENING": "Other screening",
+      "INVALID": "Invalid ticket",
+      "ERROR": "Check not possible"
+    },
+    "firstPassage": "First entry at {{time}}",
+    "otherDate": "This ticket is for the screening on {{day}} at {{time}}.",
+    "errorHelp": "The network is not responding: search for the booking in the screening list.",
+    "next": "Next ticket",
+    "list": "Screening list",
+    "reference": "Booking number",
+    "notFound": "No booking with this number for this screening.",
+    "checkIn": "Accept entry",
+    "entered": "Entry accepted at {{time}}",
+    "offlineEntered": "Accepted offline at {{time}}",
+    "pending_one": "{{count}} entry accepted offline to send",
+    "pending_other": "{{count}} entries accepted offline to send",
+    "send": "Send"
   },
   "privacy": {
     "title": "Privacy policy",

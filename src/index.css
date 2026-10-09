@@ -544,8 +544,8 @@ button.seat {
   font-weight: bold;
 }
 
-/* Guichet (US 7.2) : choix de la séance, mode de paiement, vente */
-.box-office__screening {
+/* Espace professionnel : choix de la séance (US 7.2 et 7.3) */
+.screening-select {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -553,12 +553,12 @@ button.seat {
   margin: 1.5rem 0;
 }
 
-.box-office__screening label,
+.screening-select label,
 .payment legend {
   font-weight: bold;
 }
 
-.box-office__screening select {
+.screening-select select {
   padding: 0.5rem;
   border: 1px solid var(--text-light);
   border-radius: var(--radius);
@@ -596,4 +596,93 @@ button.seat {
 .sale p {
   margin: 0;
   font-weight: bold;
+}
+
+/* Menu de l'espace professionnel */
+.staff-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Contrôle des billets (US 7.3) : caméra et écran du résultat */
+.qr-reader {
+  max-width: 500px;
+}
+
+.scan-result {
+  max-width: 500px;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+
+.scan-result h2 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+
+.scan-result p {
+  margin: 0.25rem 0;
+}
+
+.scan-result .button {
+  margin-top: 1rem;
+}
+
+.scan-result--green {
+  background-color: #1e7e34;
+}
+
+.scan-result--red {
+  background-color: #b3261e;
+}
+
+.scan-result--orange {
+  background-color: #b35c00;
+}
+
+/* Liste de la séance (mode dégradé) */
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 500px;
+  margin-top: 2rem;
+}
+
+.entries input {
+  padding: 0.5rem;
+  border: 1px solid var(--text-light);
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+.pending {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+.entries__list {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.entries__list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  background-color: var(--card);
+  box-shadow: var(--shadow);
 }

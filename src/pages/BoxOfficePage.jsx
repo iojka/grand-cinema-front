@@ -7,8 +7,10 @@ import {
   ticketsPdfUrl,
 } from '../api/client.js';
 import LoginForm from '../components/LoginForm.jsx';
+import ScreeningSelect from '../components/ScreeningSelect.jsx';
 import SeatGrid from '../components/SeatGrid.jsx';
-import { formatDay, formatPrice, getDay, getTime } from '../utils/programme.js';
+import StaffNav from '../components/StaffNav.jsx';
+import { formatPrice } from '../utils/programme.js';
 
 // Le plan est relu toutes les 4 secondes, comme sur le site (US 2.1)
 const REFRESH_DELAY = 4000;
@@ -161,25 +163,12 @@ function BoxOfficePage() {
   return (
     <section className="box-office">
       <h1>{t('boxOffice.title')}</h1>
-      <button
-        type="button"
-        className="button button--secondary"
-        onClick={handleLogout}
-      >
-        {t('login.logout')}
-      </button>
-
-      <div className="box-office__screening">
-        <label htmlFor="screening">{t('boxOffice.screening')}</label>
-        <select id="screening" value={screeningId} onChange={handleScreening}>
-          <option value="">{t('boxOffice.choose')}</option>
-          {screenings.map((screening) => (
-            <option key={screening.id} value={screening.id}>
-              {`${formatDay(getDay(screening.starts_at), i18n.language)} ${getTime(screening.starts_at)} · ${screening.movie.title} · ${screening.room}`}
-            </option>
-          ))}
-        </select>
-      </div>
+      <StaffNav onLogout={handleLogout} />
+      <ScreeningSelect
+        screenings={screenings}
+        value={screeningId}
+        onChange={handleScreening}
+      />
 
       {seatMap && (
         <>

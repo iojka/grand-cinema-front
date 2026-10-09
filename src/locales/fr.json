@@ -124,8 +124,6 @@
   },
   "boxOffice": {
     "title": "Vente au guichet",
-    "screening": "Séance",
-    "choose": "Choisissez une séance",
     "payment": "Mode de paiement",
     "methods": {
       "CASH": "Espèces",
@@ -136,6 +134,35 @@
     "print": "Imprimer les billets (PDF)",
     "forbidden": "Votre compte n'a pas accès à la vente au guichet.",
     "error": "La vente n'a pas pu être enregistrée. Réessayez."
+  },
+  "staff": {
+    "screening": "Séance",
+    "choose": "Choisissez une séance",
+    "boxOffice": "Vente au guichet",
+    "scan": "Contrôle des billets"
+  },
+  "scan": {
+    "title": "Contrôle des billets",
+    "results": {
+      "VALID": "Entrée validée",
+      "ALREADY_SCANNED": "Billet déjà scanné",
+      "OTHER_SCREENING": "Autre séance",
+      "INVALID": "Billet non valide",
+      "ERROR": "Contrôle impossible"
+    },
+    "firstPassage": "Premier passage à {{time}}",
+    "otherDate": "Ce billet est pour la séance du {{day}} à {{time}}.",
+    "errorHelp": "Le réseau ne répond pas : recherchez la réservation dans la liste de la séance.",
+    "next": "Billet suivant",
+    "list": "Liste de la séance",
+    "reference": "Numéro de réservation",
+    "notFound": "Aucune réservation avec ce numéro pour cette séance.",
+    "checkIn": "Valider l'entrée",
+    "entered": "Entrée validée à {{time}}",
+    "offlineEntered": "Validée hors ligne à {{time}}",
+    "pending_one": "{{count}} entrée validée hors ligne à envoyer",
+    "pending_other": "{{count}} entrées validées hors ligne à envoyer",
+    "send": "Envoyer"
   },
   "privacy": {
     "title": "Politique de confidentialité",

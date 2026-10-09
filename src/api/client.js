@@ -262,3 +262,73 @@ export async function sellAtBoxOffice(
     return null;
   }
 }
+
+/**
+ * Contrôle un billet scanné à l'entrée (US 7.3)
+ * @param {string} token jeton JWT de l'agent connecté
+ * @param {number} screeningId séance contrôlée
+ * @param {string} code texte lu dans le QR code
+ * @returns {Promise<object|null>} { status, data }, ou null si le réseau
+ *   ne répond pas
+ */
+export async function scanTicket(token, screeningId, code) {
+  try {
+    const response = await fetch(`${API_URL}/api/tickets/scan/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ screening: Number(screeningId), code }),
+    });
+    const data = await response.json();
+    return { status: response.status, data };
+  } catch (error) {
+    console.error('Scan impossible :', error.message);
+    return null;
+  }
+}
+
+/**
+ * Récupère la liste des réservations d'une séance (US 7.3, mode dégradé)
+ * @param {string} token jeton JWT de l'agent connecté
+ * @param {number} screeningId séance contrôlée
+ * @returns {Promise<Array|null>} les réservations, ou null en cas d'erreur
+ */
+export async function getEntries(token, screeningId) {
+  try {
+    const path = `/api/tickets/screenings/${screeningId}/entries/`;
+    const response = await fetch(`${API_URL}${path}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response.ok) {
+      throw new Error(`erreur ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Liste de la séance indisponible :', error.message);
+    return null;
+  }
+}
+
+/**
+ * Valide l'entrée d'une réservation par son numéro (US 7.3, critère 4)
+ * @param {string} token jeton JWT de l'agent connecté
+ * @param {string} bookingId identifiant de la réservation
+ * @returns {Promise<object|null>} { status, data }, ou null si le réseau
+ *   ne répond pas
+ */
+export async function checkIn(token, bookingId) {
+  try {
+    const path = `/api/tickets/bookings/${bookingId}/checkin/`;
+    const response = await fetch(`${API_URL}${path}`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await response.json();
+    return { status: response.status, data };
+  } catch (error) {
+    console.error('Entrée non envoyée :', error.message);
+    return null;
+  }
+}
