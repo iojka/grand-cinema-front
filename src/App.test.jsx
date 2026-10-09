@@ -48,6 +48,19 @@ describe('App', () => {
     expect(screen.getByText("This week's programme")).toBeInTheDocument();
   });
 
+  it("mène le personnel à la page du guichet depuis l'en-tête", async () => {
+    mockEmptyProgramme();
+
+    renderApp();
+    await userEvent.click(
+      screen.getByRole('link', { name: 'Espace professionnel' }),
+    );
+
+    expect(
+      screen.getByRole('heading', { name: 'Connexion du personnel' }),
+    ).toBeInTheDocument();
+  });
+
   it('affiche une page introuvable pour une adresse inconnue', () => {
     mockEmptyProgramme();
 

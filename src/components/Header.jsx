@@ -17,6 +17,8 @@ function Header() {
       </Link>
       <nav className="header__nav">
         <Link to="/">{t('header.home')}</Link>
+        {/* Accès du personnel : guichet (US 7.2), connexion obligatoire */}
+        <Link to="/guichet">{t('header.staff')}</Link>
         <button type="button" onClick={switchLanguage}>
           {t('header.switchLanguage')}
         </button>
