@@ -113,6 +113,29 @@
     "at": "{{day}} à {{time}}",
     "pdf": "Télécharger mes billets à imprimer (PDF)"
   },
+  "login": {
+    "title": "Connexion du personnel",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "logout": "Se déconnecter",
+    "error": "Connexion refusée : vérifiez votre e-mail et votre mot de passe."
+  },
+  "boxOffice": {
+    "title": "Vente au guichet",
+    "screening": "Séance",
+    "choose": "Choisissez une séance",
+    "payment": "Mode de paiement",
+    "methods": {
+      "CASH": "Espèces",
+      "CARD_TERMINAL": "Carte bancaire (terminal)"
+    },
+    "sell": "Encaisser {{total}}",
+    "sold": "Vente enregistrée : {{reference}}",
+    "print": "Imprimer les billets (PDF)",
+    "forbidden": "Votre compte n'a pas accès à la vente au guichet.",
+    "error": "La vente n'a pas pu être enregistrée. Réessayez."
+  },
   "privacy": {
     "title": "Politique de confidentialité",
     "intro": "Le Grand Cinéma (Mende) est responsable du traitement des données collectées lors d'une réservation en ligne.",

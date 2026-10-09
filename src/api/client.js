@@ -200,3 +200,65 @@ export async function startCheckout(bookingId) {
     return null;
   }
 }
+
+/**
+ * Connecte un membre du personnel par e-mail et mot de passe (US 9.1)
+ * @param {string} email adresse e-mail, identifiant de connexion
+ * @param {string} password mot de passe
+ * @returns {Promise<string|null>} le jeton JWT d'accès, ou null si la
+ *   connexion est refusée
+ */
+export async function login(email, password) {
+  try {
+    const response = await fetch(`${API_URL}/api/auth/login/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!response.ok) {
+      throw new Error(`erreur ${response.status}`);
+    }
+    const data = await response.json();
+    return data.access;
+  } catch (error) {
+    console.error('Connexion refusée :', error.message);
+    return null;
+  }
+}
+
+/**
+ * Enregistre une vente au guichet, payée sur place (US 7.2)
+ * @param {string} token jeton JWT de l'agent connecté
+ * @param {number} screeningId identifiant de la séance
+ * @param {Array<object>} tickets places et tarifs : [{ seat, price }]
+ * @param {string} paymentMethod "CASH" (espèces) ou "CARD_TERMINAL"
+ * @returns {Promise<object|null>} { status, data }, ou null si l'API ne
+ *   répond pas
+ */
+export async function sellAtBoxOffice(
+  token,
+  screeningId,
+  tickets,
+  paymentMethod,
+) {
+  try {
+    const response = await fetch(`${API_URL}/api/booking/box-office/sales/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Route réservée au personnel : le jeton prouve la connexion
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        screening: screeningId,
+        tickets,
+        payment_method: paymentMethod,
+      }),
+    });
+    const data = await response.json();
+    return { status: response.status, data };
+  } catch (error) {
+    console.error('Vente non enregistrée :', error.message);
+    return null;
+  }
+}
