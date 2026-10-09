@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   areSideBySide,
   formatDuration,
@@ -9,6 +9,7 @@ import {
   groupByDay,
   groupByMovie,
   groupByRow,
+  todayDate,
 } from './programme.js';
 
 // Trois séances comme les renvoie l'API (déjà triées par date et heure)
@@ -86,5 +87,16 @@ describe('choix des places (US 2.2)', () => {
 describe('billet (US 4.1)', () => {
   it('écrit le jour en entier, sans abréviation', () => {
     expect(formatLongDay('2026-10-08', 'fr')).toBe('jeudi 8 octobre');
+  });
+});
+
+describe('suivi des réservations (US 7.1)', () => {
+  it("donne la date du jour au format de l'API", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 9, 9, 10, 0)); // 9 octobre 2026
+
+    expect(todayDate()).toBe('2026-10-09');
+
+    vi.useRealTimers();
   });
 });
