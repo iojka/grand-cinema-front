@@ -139,7 +139,8 @@
     "screening": "Screening",
     "choose": "Choose a screening",
     "boxOffice": "Box office sale",
-    "scan": "Ticket check"
+    "scan": "Ticket check",
+    "tracking": "Booking tracking"
   },
   "scan": {
     "title": "Ticket check",
@@ -163,6 +164,22 @@
     "pending_one": "{{count}} entry accepted offline to send",
     "pending_other": "{{count}} entries accepted offline to send",
     "send": "Send"
+  },
+  "tracking": {
+    "title": "Booking tracking",
+    "date": "Date",
+    "room": "Screen",
+    "allRooms": "All screens",
+    "time": "Time",
+    "movie": "Film",
+    "sold": "Sold / capacity",
+    "rate": "Rate",
+    "web": "Online",
+    "boxOffice": "Box office",
+    "loading": "Loading tracking...",
+    "empty": "No screening on this day.",
+    "error": "Tracking could not be updated: the figures shown may be out of date.",
+    "updated": "Updated at {{time}}"
   },
   "privacy": {
     "title": "Privacy policy",

@@ -8,6 +8,7 @@ import MoviePage from './pages/MoviePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import PrivacyPage from './pages/PrivacyPage.jsx';
 import ScanPage from './pages/ScanPage.jsx';
+import TrackingPage from './pages/TrackingPage.jsx';
 import SeatMapPage from './pages/SeatMapPage.jsx';
 
 // Les pages seront ajoutées au fil des US (programme, fiche film...)
@@ -28,6 +29,7 @@ function App() {
           <Route path="/confidentialite" element={<PrivacyPage />} />
           <Route path="/guichet" element={<BoxOfficePage />} />
           <Route path="/controle" element={<ScanPage />} />
+          <Route path="/suivi" element={<TrackingPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
