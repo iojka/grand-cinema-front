@@ -113,6 +113,29 @@
     "at": "{{day}} at {{time}}",
     "pdf": "Download my tickets to print (PDF)"
   },
+  "login": {
+    "title": "Staff login",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Log in",
+    "logout": "Log out",
+    "error": "Login refused: check your email address and password."
+  },
+  "boxOffice": {
+    "title": "Box office sale",
+    "screening": "Screening",
+    "choose": "Choose a screening",
+    "payment": "Payment method",
+    "methods": {
+      "CASH": "Cash",
+      "CARD_TERMINAL": "Bank card (terminal)"
+    },
+    "sell": "Charge {{total}}",
+    "sold": "Sale recorded: {{reference}}",
+    "print": "Print the tickets (PDF)",
+    "forbidden": "Your account does not have access to box office sales.",
+    "error": "The sale could not be recorded. Please try again."
+  },
   "privacy": {
     "title": "Privacy policy",
     "intro": "Le Grand Cinéma (Mende) is responsible for the data collected when you book online.",

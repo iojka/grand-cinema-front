@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router';
 import Header from './components/Header.jsx';
 import BookingPage from './pages/BookingPage.jsx';
+import BoxOfficePage from './pages/BoxOfficePage.jsx';
 import ConfirmationPage from './pages/ConfirmationPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import MoviePage from './pages/MoviePage.jsx';
@@ -24,6 +25,7 @@ function App() {
             element={<ConfirmationPage />}
           />
           <Route path="/confidentialite" element={<PrivacyPage />} />
+          <Route path="/guichet" element={<BoxOfficePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

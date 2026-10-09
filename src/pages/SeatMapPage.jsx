@@ -3,20 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useParams } from 'react-router';
 import { getSeatMap, holdSeats } from '../api/client.js';
 import OtherScreenings from '../components/OtherScreenings.jsx';
+import SeatGrid from '../components/SeatGrid.jsx';
 import Steps from '../components/Steps.jsx';
 import {
   areSideBySide,
   formatDay,
   getDay,
   getTime,
-  groupByRow,
 } from '../utils/programme.js';
 
 // US 2.1 : le plan est relu toutes les 4 secondes (moins de 5 s demandées)
 const REFRESH_DELAY = 4000;
-
-// États d'une place dans la légende (SELECTED : choisie par moi, US 2.2)
-const LEGEND = ['FREE', 'SELECTED', 'HELD', 'SOLD'];
 
 // Plan de salle d'une séance : voir les places (US 2.1) et les choisir
 // côte à côte (US 2.2)
@@ -112,67 +109,11 @@ function SeatMapPage() {
         <p>{t('programme.remaining', { count: seatMap.remaining_seats })}</p>
       )}
 
-      <p className="screen">{t('seats.screen')}</p>
-      <div className="seats">
-        {groupByRow(seatMap.seats).map((line) => (
-          <div key={line.row} className="seats__row">
-            <span className="seats__label">{line.row}</span>
-            {line.seats.map((seat) => {
-              const label = `${seat.row}${seat.number} ${t(`seats.status.${seat.status}`)}`;
-              const isSelected = selected.includes(seat.id);
-              let className = `seat seat--${seat.status.toLowerCase()}`;
-              if (isSelected) {
-                className += ' seat--selected';
-              }
-              if (seat.is_accessible) {
-                className += ' seat--accessible';
-              }
-              // Place libre : bouton cliquable
-              if (seat.status === 'FREE') {
-                return (
-                  <button
-                    key={seat.id}
-                    type="button"
-                    className={className}
-                    aria-label={label}
-                    aria-pressed={isSelected}
-                    title={label}
-                    onClick={() => toggleSeat(seat.id)}
-                  >
-                    {seat.number}
-                  </button>
-                );
-              }
-              return (
-                <span
-                  key={seat.id}
-                  className={className}
-                  aria-label={label}
-                  title={label}
-                >
-                  {seat.number}
-                </span>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-
-      <ul className="legend">
-        {LEGEND.map((status) => (
-          <li key={status}>
-            <span
-              className={`seat seat--${status.toLowerCase()}`}
-              aria-hidden="true"
-            ></span>
-            {t(`seats.legend.${status}`)}
-          </li>
-        ))}
-        <li>
-          <span className="seat seat--accessible" aria-hidden="true"></span>
-          {t('seats.legend.accessible')}
-        </li>
-      </ul>
+      <SeatGrid
+        seats={seatMap.seats}
+        selected={selected}
+        onToggle={toggleSeat}
+      />
 
       {message && (
         <p role="alert" className="message">
