@@ -53,7 +53,7 @@ describe('App', () => {
 
     renderApp();
     await userEvent.click(
-      screen.getByRole('link', { name: 'Espace personnel' }),
+      screen.getByRole('link', { name: 'Espace professionnel' }),
     );
 
     expect(
