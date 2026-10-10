@@ -13,8 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Historique complet : SonarQube Cloud repère le code nouveau
       - name: Récupérer le code
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Installer Node 24
         uses: actions/setup-node@v5
@@ -32,9 +35,18 @@ jobs:
       - name: Vérifier la mise en forme (Prettier)
         run: npm run format:check
 
-      - name: Lancer les tests (Vitest)
-        run: npm run test
+      # Tests et couverture (fichier coverage/lcov.info pour Sonar)
+      - name: Lancer les tests avec la couverture (Vitest)
+        run: npm run test:coverage
 
       # Vérifie que l'application se construit (ce qui sera déployé)
       - name: Construire l'application
         run: npm run build
+
+      # Qualité du code et couverture envoyées à SonarQube Cloud (D3 Q1) ;
+      # le jeton est un secret du dépôt, jamais écrit dans le code ;
+      # action tierce figée sur un commit précis (règle Sonar S7637)
+      - name: Analyser la qualité (SonarQube Cloud)
+        uses: SonarSource/sonarqube-scan-action@d209202bc7d53ff1cc128f7f907dac145c9d6ae9 # v8.3.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
