@@ -375,3 +375,43 @@ export async function getOccupancy(token, start, end) {
     return null;
   }
 }
+
+/**
+ * Récupère les indicateurs du projet (US 8.2)
+ * @param {string} token jeton JWT de la direction ou d'Isabelle
+ * @returns {Promise<object|null>} { status, data }, ou null si l'API ne
+ *   répond pas
+ */
+export async function getKpi(token) {
+  try {
+    const response = await fetch(`${API_URL}/api/dashboard/kpi/`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await response.json();
+    return { status: response.status, data };
+  } catch (error) {
+    console.error('Indicateurs indisponibles :', error.message);
+    return null;
+  }
+}
+
+/**
+ * Télécharge les indicateurs du projet en CSV (US 8.2, critère 3)
+ * @param {string} token jeton JWT de la direction ou d'Isabelle
+ * @returns {Promise<Blob|null>} le fichier, ou null en cas d'erreur
+ */
+export async function downloadKpiCsv(token) {
+  try {
+    const response = await fetch(`${API_URL}/api/dashboard/kpi/csv/`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response.ok) {
+      throw new Error(`erreur ${response.status}`);
+    }
+    // blob() : contenu brut du fichier, prêt à être téléchargé
+    return await response.blob();
+  } catch (error) {
+    console.error('Export CSV impossible :', error.message);
+    return null;
+  }
+}
