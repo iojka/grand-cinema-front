@@ -140,7 +140,8 @@
     "choose": "Choose a screening",
     "boxOffice": "Box office sale",
     "scan": "Ticket check",
-    "tracking": "Booking tracking"
+    "tracking": "Booking tracking",
+    "dashboard": "Dashboard"
   },
   "scan": {
     "title": "Ticket check",
@@ -180,6 +181,36 @@
     "empty": "No screening on this day.",
     "error": "Tracking could not be updated: the figures shown may be out of date.",
     "updated": "Updated at {{time}}"
+  },
+  "dashboard": {
+    "title": "Occupancy dashboard",
+    "start": "From",
+    "end": "To",
+    "sales": "Online and box office sales",
+    "web": "Online sales: {{number}} ({{percent}} %)",
+    "boxOffice": "Box office sales: {{number}} ({{percent}} %)",
+    "fillRate": "Occupancy rate",
+    "levels": {
+      "low": "Under 20 %",
+      "medium": "From 20 to 80 %",
+      "high": "Over 80 %"
+    },
+    "byWeek": "By week",
+    "byDay": "By day",
+    "byRoom": "By screen",
+    "byScreening": "By screening",
+    "week": "Week",
+    "weekOf": "Week of {{day}}",
+    "day": "Date",
+    "room": "Screen",
+    "movie": "Film",
+    "sold": "Sold / capacity",
+    "rate": "Rate",
+    "empty": "No screening in this period.",
+    "errors": {
+      "forbidden": "Your account does not have access to the dashboard.",
+      "server": "The dashboard is temporarily unavailable."
+    }
   },
   "privacy": {
     "title": "Privacy policy",

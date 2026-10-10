@@ -151,13 +151,34 @@ export function formatPrice(amount, language) {
 }
 
 /**
+ * Écrit une date au format de l'API, par exemple "2026-10-09"
+ * @param {Date} date date à écrire, à l'heure de l'appareil
+ * @returns {string} la date au format AAAA-MM-JJ
+ */
+function toApiDate(date) {
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${date.getFullYear()}-${month}-${day}`;
+}
+
+/**
  * Donne la date du jour au format de l'API, par exemple "2026-10-09"
  * (suivi des réservations, US 7.1)
  * @returns {string} la date du jour, à l'heure de l'appareil
  */
 export function todayDate() {
-  const now = new Date();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  return `${now.getFullYear()}-${month}-${day}`;
+  return toApiDate(new Date());
+}
+
+/**
+ * Donne la date d'il y a quelques jours au format de l'API (période du
+ * tableau de bord, US 8.1)
+ * @param {number} days nombre de jours avant aujourd'hui
+ * @returns {string} la date, par exemple "2026-10-03"
+ */
+export function daysAgo(days) {
+  const date = new Date();
+  // setDate gère le changement de mois et d'année
+  date.setDate(date.getDate() - days);
+  return toApiDate(date);
 }

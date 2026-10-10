@@ -738,3 +738,90 @@ button.seat {
   text-align: left;
   white-space: nowrap;
 }
+
+/* Tableau de bord du remplissage (US 8.1) */
+.dashboard__period {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.dashboard__period div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dashboard__period label {
+  font-weight: bold;
+}
+
+.dashboard__period input {
+  padding: 0.5rem;
+  border: 1px solid var(--text-light);
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+/* Barre de comparaison des ventes web et guichet */
+.compare {
+  display: flex;
+  max-width: 500px;
+  height: 1rem;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background-color: var(--placeholder);
+}
+
+.compare__web {
+  background-color: var(--accent);
+}
+
+.compare__box-office {
+  background-color: var(--text);
+}
+
+/* Code couleur du taux : rouge, orange ou vert, texte blanc */
+.rate {
+  display: inline-block;
+  min-width: 3.5rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius);
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.rate--low {
+  background-color: #b3261e;
+}
+
+.rate--medium {
+  background-color: #b35c00;
+}
+
+.rate--high {
+  background-color: #1e7e34;
+}
+
+.dashboard__table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  background-color: var(--card);
+}
+
+.dashboard__table caption {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.dashboard__table th,
+.dashboard__table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--placeholder);
+  text-align: left;
+  white-space: nowrap;
+}

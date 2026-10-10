@@ -140,7 +140,8 @@
     "choose": "Choisissez une séance",
     "boxOffice": "Vente au guichet",
     "scan": "Contrôle des billets",
-    "tracking": "Suivi des réservations"
+    "tracking": "Suivi des réservations",
+    "dashboard": "Tableau de bord"
   },
   "scan": {
     "title": "Contrôle des billets",
@@ -180,6 +181,36 @@
     "empty": "Aucune séance ce jour-là.",
     "error": "Le suivi n'a pas pu être mis à jour : les chiffres affichés peuvent dater.",
     "updated": "Mis à jour à {{time}}"
+  },
+  "dashboard": {
+    "title": "Tableau de bord du remplissage",
+    "start": "Du",
+    "end": "Au",
+    "sales": "Ventes web et guichet",
+    "web": "Ventes en ligne : {{number}} ({{percent}} %)",
+    "boxOffice": "Ventes au guichet : {{number}} ({{percent}} %)",
+    "fillRate": "Taux de remplissage",
+    "levels": {
+      "low": "Moins de 20 %",
+      "medium": "De 20 à 80 %",
+      "high": "Plus de 80 %"
+    },
+    "byWeek": "Par semaine",
+    "byDay": "Par jour",
+    "byRoom": "Par salle",
+    "byScreening": "Par séance",
+    "week": "Semaine",
+    "weekOf": "Semaine du {{day}}",
+    "day": "Date",
+    "room": "Salle",
+    "movie": "Film",
+    "sold": "Vendues / capacité",
+    "rate": "Taux",
+    "empty": "Aucune séance sur cette période.",
+    "errors": {
+      "forbidden": "Votre compte n'a pas accès au tableau de bord.",
+      "server": "Le tableau de bord est momentanément indisponible."
+    }
   },
   "privacy": {
     "title": "Politique de confidentialité",
