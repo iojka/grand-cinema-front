@@ -23,7 +23,9 @@ jobs:
           cache: npm
 
       - name: Installer les dépendances
-        run: npm ci
+        # --ignore-scripts : aucun script d'installation des paquets
+        # n'est exécuté (aucune dépendance n'en a besoin, règle Sonar)
+        run: npm ci --ignore-scripts
 
       # L'adresse de l'API est intégrée au moment du build (Vite).
       # Ce n'est pas un secret : elle est visible dans le navigateur.
