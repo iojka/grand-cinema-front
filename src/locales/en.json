@@ -141,7 +141,8 @@
     "boxOffice": "Box office sale",
     "scan": "Ticket check",
     "tracking": "Booking tracking",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "kpi": "Project KPIs"
   },
   "scan": {
     "title": "Ticket check",
@@ -210,6 +211,31 @@
     "errors": {
       "forbidden": "Your account does not have access to the dashboard.",
       "server": "The dashboard is temporarily unavailable."
+    }
+  },
+  "kpi": {
+    "title": "Project KPIs",
+    "since": "Since launch on {{day}} ({{days}} days).",
+    "export": "Export as CSV",
+    "attendance": "Attendance since launch",
+    "entries": "{{number}} admissions",
+    "targetToDate": "Target to date: {{number}} admissions",
+    "baseline": "Without the app, same period: {{number}} admissions",
+    "online": "Share of online bookings",
+    "peak": "Occupancy at peak times",
+    "peakHelp": "Evening, weekend and festival screenings.",
+    "tourists": "Share of tourists during the festival",
+    "touristsHelp": "Online bookings from outside Lozère or abroad.",
+    "noFestival": "Festival dates to be set in the administration.",
+    "target": "Target: {{value}} %",
+    "status": {
+      "ok": "Target reached",
+      "ko": "Target not reached"
+    },
+    "errors": {
+      "forbidden": "Your account does not have access to the project KPIs.",
+      "server": "The KPIs are temporarily unavailable.",
+      "export": "The CSV export failed, please try again."
     }
   },
   "privacy": {

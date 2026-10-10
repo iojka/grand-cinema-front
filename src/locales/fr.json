@@ -141,7 +141,8 @@
     "boxOffice": "Vente au guichet",
     "scan": "Contrôle des billets",
     "tracking": "Suivi des réservations",
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "kpi": "Indicateurs du projet"
   },
   "scan": {
     "title": "Contrôle des billets",
@@ -210,6 +211,31 @@
     "errors": {
       "forbidden": "Votre compte n'a pas accès au tableau de bord.",
       "server": "Le tableau de bord est momentanément indisponible."
+    }
+  },
+  "kpi": {
+    "title": "Indicateurs du projet",
+    "since": "Depuis le lancement le {{day}} ({{days}} jours).",
+    "export": "Exporter en CSV",
+    "attendance": "Fréquentation depuis le lancement",
+    "entries": "{{number}} entrées",
+    "targetToDate": "Cible à date : {{number}} entrées",
+    "baseline": "Sans l'application, même durée : {{number}} entrées",
+    "online": "Part des réservations en ligne",
+    "peak": "Remplissage aux heures d'affluence",
+    "peakHelp": "Séances du soir, du week-end et du festival.",
+    "tourists": "Part de touristes pendant le festival",
+    "touristsHelp": "Réservations en ligne hors Lozère ou de l'étranger.",
+    "noFestival": "Dates du festival à régler dans l'administration.",
+    "target": "Cible : {{value}} %",
+    "status": {
+      "ok": "Objectif atteint",
+      "ko": "Objectif non atteint"
+    },
+    "errors": {
+      "forbidden": "Votre compte n'a pas accès aux indicateurs du projet.",
+      "server": "Les indicateurs sont momentanément indisponibles.",
+      "export": "L'export CSV a échoué, réessayez."
     }
   },
   "privacy": {

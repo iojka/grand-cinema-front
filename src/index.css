@@ -825,3 +825,59 @@ button.seat {
   text-align: left;
   white-space: nowrap;
 }
+
+/* Indicateurs du projet (US 8.2) : une carte par indicateur */
+.kpi-list {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.kpi {
+  padding: 1rem;
+  background-color: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.kpi h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.kpi p {
+  margin: 0 0 0.5rem;
+}
+
+.kpi__value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.kpi__help {
+  color: var(--text-light);
+}
+
+/* Statut : vert ou rouge, texte blanc (mêmes couleurs que les taux) */
+.kpi__status {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.kpi__status--ok {
+  background-color: #1e7e34;
+}
+
+.kpi__status--ko {
+  background-color: #b3261e;
+}
+
+/* Tablette et ordinateur : cartes sur 2 colonnes */
+@media (min-width: 768px) {
+  .kpi-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
