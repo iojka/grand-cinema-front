@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   areSideBySide,
+  daysAgo,
   formatDuration,
   formatLongDay,
   formatPrice,
@@ -96,6 +97,17 @@ describe('suivi des réservations (US 7.1)', () => {
     vi.setSystemTime(new Date(2026, 9, 9, 10, 0)); // 9 octobre 2026
 
     expect(todayDate()).toBe('2026-10-09');
+
+    vi.useRealTimers();
+  });
+});
+
+describe('tableau de bord (US 8.1)', () => {
+  it('donne la date de plusieurs jours avant aujourd’hui', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 9, 2, 10, 0)); // 2 octobre 2026
+
+    expect(daysAgo(6)).toBe('2026-09-26'); // changement de mois
 
     vi.useRealTimers();
   });
