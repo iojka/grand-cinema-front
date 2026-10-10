@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router';
+import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 import BookingPage from './pages/BookingPage.jsx';
 import BoxOfficePage from './pages/BoxOfficePage.jsx';
@@ -6,6 +7,7 @@ import ConfirmationPage from './pages/ConfirmationPage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import KpiPage from './pages/KpiPage.jsx';
+import LegalPage from './pages/LegalPage.jsx';
 import MoviePage from './pages/MoviePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import PrivacyPage from './pages/PrivacyPage.jsx';
@@ -29,6 +31,7 @@ function App() {
             element={<ConfirmationPage />}
           />
           <Route path="/confidentialite" element={<PrivacyPage />} />
+          <Route path="/mentions-legales" element={<LegalPage />} />
           <Route path="/guichet" element={<BoxOfficePage />} />
           <Route path="/controle" element={<ScanPage />} />
           <Route path="/suivi" element={<TrackingPage />} />
@@ -37,6 +40,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }

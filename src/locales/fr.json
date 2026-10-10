@@ -266,6 +266,33 @@
       "text": "Vous pouvez demander l'accès, la rectification ou l'effacement de vos données en écrivant à dpo@legrandcinema.test. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr)."
     }
   },
+  "legal": {
+    "title": "Mentions légales",
+    "publisher": {
+      "title": "Éditeur du site",
+      "text": "Le Grand Cinéma, cinéma de Mende (Lozère). Entreprise fictive créée pour un sujet d'examen. Contact : contact@legrandcinema.test."
+    },
+    "director": {
+      "title": "Directeur de la publication",
+      "text": "La direction du Grand Cinéma."
+    },
+    "hosting": {
+      "title": "Hébergement",
+      "text": "Microsoft Azure (région France Central), Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Irlande."
+    },
+    "cookies": {
+      "title": "Cookies et mesure d'audience",
+      "text": "Le site n'utilise aucun cookie publicitaire ni de mesure d'audience. La connexion du personnel utilise le stockage de session du navigateur, effacé à la fermeture de l'onglet."
+    },
+    "project": {
+      "title": "Réalisation",
+      "text": "Site réalisé par Marine Crognier dans le cadre du Bachelor Développeur d'application Python (STUDI)."
+    }
+  },
+  "footer": {
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité"
+  },
   "rating": {
     "TP": "Tous publics",
     "-12": "Interdit aux moins de 12 ans",
