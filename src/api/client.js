@@ -353,3 +353,25 @@ export async function getTracking(token, day) {
     return null;
   }
 }
+
+/**
+ * Récupère le tableau de bord du remplissage d'une période (US 8.1)
+ * @param {string} token jeton JWT d'Isabelle ou de la direction
+ * @param {string} start premier jour, par exemple "2026-10-01"
+ * @param {string} end dernier jour, par exemple "2026-10-31"
+ * @returns {Promise<object|null>} { status, data }, ou null si l'API ne
+ *   répond pas
+ */
+export async function getOccupancy(token, start, end) {
+  try {
+    const response = await fetch(
+      `${API_URL}/api/dashboard/occupancy/?start=${start}&end=${end}`,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+    const data = await response.json();
+    return { status: response.status, data };
+  } catch (error) {
+    console.error('Tableau de bord indisponible :', error.message);
+    return null;
+  }
+}

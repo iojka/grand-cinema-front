@@ -3,6 +3,7 @@ import Header from './components/Header.jsx';
 import BookingPage from './pages/BookingPage.jsx';
 import BoxOfficePage from './pages/BoxOfficePage.jsx';
 import ConfirmationPage from './pages/ConfirmationPage.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import MoviePage from './pages/MoviePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
@@ -30,6 +31,7 @@ function App() {
           <Route path="/guichet" element={<BoxOfficePage />} />
           <Route path="/controle" element={<ScanPage />} />
           <Route path="/suivi" element={<TrackingPage />} />
+          <Route path="/tableau-de-bord" element={<DashboardPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
