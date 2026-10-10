@@ -1,0 +1,54 @@
+# Intégration continue du front : à chaque push et à chaque pull request
+# vers develop ou main, GitHub vérifie le code React et lance les tests.
+name: CI front
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop, main]
+
+jobs:
+  qualite-et-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Historique complet : SonarQube Cloud repère le code nouveau
+      - name: Récupérer le code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Installer Node 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      # npm ci installe exactement les versions du package-lock.json
+      - name: Installer les dépendances
+        # --ignore-scripts : aucun script d'installation des paquets
+        # n'est exécuté (aucune dépendance n'en a besoin, règle Sonar)
+        run: npm ci --ignore-scripts
+
+      - name: Analyser le code (ESLint)
+        run: npm run lint
+
+      - name: Vérifier la mise en forme (Prettier)
+        run: npm run format:check
+
+      # Tests et couverture (fichier coverage/lcov.info pour Sonar)
+      - name: Lancer les tests avec la couverture (Vitest)
+        run: npm run test:coverage
+
+      # Vérifie que l'application se construit (ce qui sera déployé)
+      - name: Construire l'application
+        run: npm run build
+
+      # Qualité du code et couverture envoyées à SonarQube Cloud (D3 Q1) ;
+      # le jeton est un secret du dépôt, jamais écrit dans le code ;
+      # action tierce figée sur un commit précis (règle Sonar S7637)
+      - name: Analyser la qualité (SonarQube Cloud)
+        uses: SonarSource/sonarqube-scan-action@d209202bc7d53ff1cc128f7f907dac145c9d6ae9 # v8.3.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

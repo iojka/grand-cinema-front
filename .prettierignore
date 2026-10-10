@@ -1,0 +1,5 @@
+dist
+coverage
+package-lock.json
+# Documents rédigés à la main : pas de reformatage automatique
+*.md

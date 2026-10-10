@@ -1,0 +1,306 @@
+{
+  "header": {
+    "title": "Le Grand Cinéma",
+    "home": "Home",
+    "staff": "Staff area",
+    "switchLanguage": "Version française"
+  },
+  "programme": {
+    "title": "This week's programme",
+    "days": "Days",
+    "loading": "Loading the programme...",
+    "empty": "No screenings in the next 7 days.",
+    "error": "The programme is temporarily unavailable.",
+    "full": "Sold out",
+    "remaining_one": "{{count}} seat left",
+    "remaining_other": "{{count}} seats left",
+    "youngAudience": "Young audience"
+  },
+  "movie": {
+    "back": "Back to the programme",
+    "loading": "Loading the film...",
+    "error": "This film cannot be found.",
+    "poster": "Poster of the film {{title}}",
+    "noPoster": "Poster not available",
+    "synopsis": "Synopsis",
+    "screenings": "Next screenings"
+  },
+  "seats": {
+    "title": "Seating plan",
+    "loading": "Loading the seating plan...",
+    "error": "This screening is not available.",
+    "screen": "Screen",
+    "full": "This screening is sold out.",
+    "others": "Other screenings of this film",
+    "noOthers": "No other screening available for this film.",
+    "status": {
+      "FREE": "available",
+      "HELD": "on hold",
+      "SOLD": "sold"
+    },
+    "legend": {
+      "FREE": "Available",
+      "SELECTED": "Selected",
+      "HELD": "Temporarily on hold",
+      "SOLD": "Sold",
+      "accessible": "Wheelchair space"
+    },
+    "hold": "Book these seats",
+    "selected_one": "{{count}} seat selected",
+    "selected_other": "{{count}} seats selected",
+    "notSideBySide": "Choose seats side by side, in the same row.",
+    "taken": "One of the seats has just been taken. The plan has been updated, please choose other seats.",
+    "holdError": "Booking is temporarily unavailable.",
+    "back": "Back to the film's screenings"
+  },
+  "booking": {
+    "title": "Your basket",
+    "loading": "Loading your basket...",
+    "held": "Your seats are held until {{time}}.",
+    "reference": "Reference: {{reference}}",
+    "seat": "Seat {{seat}}",
+    "total": "Total: {{total}}",
+    "proof": "Proof of eligibility will be checked at the entrance for reduced fares.",
+    "expired": "Your hold has expired: your seats have been released.",
+    "back": "Back to the seating plan",
+    "changeSeats": "Change my seats"
+  },
+  "steps": {
+    "title": "Booking steps",
+    "screening": "Screening",
+    "seats": "Seats",
+    "customer": "Contact details",
+    "payment": "Payment"
+  },
+  "customer": {
+    "title": "Your contact details",
+    "name": "Name",
+    "email": "Email address",
+    "confirmation": "Confirm your email address",
+    "postcode": "Postcode",
+    "country": "Country, if you live outside France (2-letter code, for example DE)",
+    "rgpd": "Your details are only used to manage your booking, send you your ticket and produce anonymous attendance statistics. They are kept for 3 years after the screening.",
+    "submit": "Confirm my details",
+    "saved": "Your details have been saved.",
+    "next": "Next step: payment.",
+    "errors": {
+      "name": "Please enter your name.",
+      "email": "The email address is not valid.",
+      "confirmation": "The two email addresses are different.",
+      "place": "Please enter your postcode or your country.",
+      "server": "Your details could not be saved. Please check them and try again."
+    }
+  },
+  "payment": {
+    "pay": "Pay {{total}}",
+    "secure": "You will be redirected to the secure payment page of our provider Stripe (3D Secure authentication). The cinema does not store any card data.",
+    "cancelled": "The payment did not go through (card declined or payment cancelled). Your seats remain held until {{time}}: you can try again.",
+    "error": "Payment is temporarily unavailable. Please try again in a few moments."
+  },
+  "confirmation": {
+    "title": "Thank you for your booking",
+    "pending": "Payment being validated by Stripe...",
+    "reference": "Booking number",
+    "movie": "Film",
+    "date": "Date and time",
+    "room": "Screen",
+    "seats": "Seats",
+    "total": "Amount paid",
+    "email": "A confirmation email with your tickets has been sent to you.",
+    "error": "No confirmed booking matches this address.",
+    "tickets": "Your tickets",
+    "show": "Show the QR code of each ticket at the entrance.",
+    "qr": "QR code for ticket {{seat}}",
+    "at": "{{day}} at {{time}}",
+    "pdf": "Download my tickets to print (PDF)"
+  },
+  "login": {
+    "title": "Staff login",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Log in",
+    "logout": "Log out",
+    "error": "Login refused: check your email address and password."
+  },
+  "boxOffice": {
+    "title": "Box office sale",
+    "payment": "Payment method",
+    "methods": {
+      "CASH": "Cash",
+      "CARD_TERMINAL": "Bank card (terminal)"
+    },
+    "sell": "Charge {{total}}",
+    "sold": "Sale recorded: {{reference}}",
+    "print": "Print the tickets (PDF)",
+    "forbidden": "Your account does not have access to box office sales.",
+    "error": "The sale could not be recorded. Please try again."
+  },
+  "staff": {
+    "screening": "Screening",
+    "choose": "Choose a screening",
+    "boxOffice": "Box office sale",
+    "scan": "Ticket check",
+    "tracking": "Booking tracking",
+    "dashboard": "Dashboard",
+    "kpi": "Project KPIs"
+  },
+  "scan": {
+    "title": "Ticket check",
+    "results": {
+      "VALID": "Entry accepted",
+      "ALREADY_SCANNED": "Ticket already scanned",
+      "OTHER_SCREENING": "Other screening",
+      "INVALID": "Invalid ticket",
+      "ERROR": "Check not possible"
+    },
+    "firstPassage": "First entry at {{time}}",
+    "otherDate": "This ticket is for the screening on {{day}} at {{time}}.",
+    "errorHelp": "The network is not responding: search for the booking in the screening list.",
+    "next": "Next ticket",
+    "list": "Screening list",
+    "reference": "Booking number",
+    "notFound": "No booking with this number for this screening.",
+    "checkIn": "Accept entry",
+    "entered": "Entry accepted at {{time}}",
+    "offlineEntered": "Accepted offline at {{time}}",
+    "pending_one": "{{count}} entry accepted offline to send",
+    "pending_other": "{{count}} entries accepted offline to send",
+    "send": "Send"
+  },
+  "tracking": {
+    "title": "Booking tracking",
+    "date": "Date",
+    "room": "Screen",
+    "allRooms": "All screens",
+    "time": "Time",
+    "movie": "Film",
+    "sold": "Sold / capacity",
+    "rate": "Rate",
+    "web": "Online",
+    "boxOffice": "Box office",
+    "loading": "Loading tracking...",
+    "empty": "No screening on this day.",
+    "error": "Tracking could not be updated: the figures shown may be out of date.",
+    "updated": "Updated at {{time}}"
+  },
+  "dashboard": {
+    "title": "Occupancy dashboard",
+    "start": "From",
+    "end": "To",
+    "sales": "Online and box office sales",
+    "web": "Online sales: {{number}} ({{percent}} %)",
+    "boxOffice": "Box office sales: {{number}} ({{percent}} %)",
+    "fillRate": "Occupancy rate",
+    "levels": {
+      "low": "Under 20 %",
+      "medium": "From 20 to 80 %",
+      "high": "Over 80 %"
+    },
+    "byWeek": "By week",
+    "byDay": "By day",
+    "byRoom": "By screen",
+    "byScreening": "By screening",
+    "week": "Week",
+    "weekOf": "Week of {{day}}",
+    "day": "Date",
+    "room": "Screen",
+    "movie": "Film",
+    "sold": "Sold / capacity",
+    "rate": "Rate",
+    "empty": "No screening in this period.",
+    "errors": {
+      "forbidden": "Your account does not have access to the dashboard.",
+      "server": "The dashboard is temporarily unavailable."
+    }
+  },
+  "kpi": {
+    "title": "Project KPIs",
+    "since": "Since launch on {{day}} ({{days}} days).",
+    "export": "Export as CSV",
+    "attendance": "Attendance since launch",
+    "entries": "{{number}} admissions",
+    "targetToDate": "Target to date: {{number}} admissions",
+    "baseline": "Without the app, same period: {{number}} admissions",
+    "online": "Share of online bookings",
+    "peak": "Occupancy at peak times",
+    "peakHelp": "Evening, weekend and festival screenings.",
+    "tourists": "Share of tourists during the festival",
+    "touristsHelp": "Online bookings from outside Lozère or abroad.",
+    "noFestival": "Festival dates to be set in the administration.",
+    "target": "Target: {{value}} %",
+    "status": {
+      "ok": "Target reached",
+      "ko": "Target not reached"
+    },
+    "errors": {
+      "forbidden": "Your account does not have access to the project KPIs.",
+      "server": "The KPIs are temporarily unavailable.",
+      "export": "The CSV export failed, please try again."
+    }
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "intro": "Le Grand Cinéma (Mende) is responsible for the data collected when you book online.",
+    "data": {
+      "title": "Data collected",
+      "text": "Name, email address, postcode or country, booked seats and fares. No card data: payment is handled by our provider Stripe."
+    },
+    "purposes": {
+      "title": "Purposes",
+      "text": "Managing your booking, sending you your ticket and producing anonymous attendance statistics (where spectators come from, especially during the festival)."
+    },
+    "legal": {
+      "title": "Legal basis",
+      "text": "Performance of the ticket sale contract."
+    },
+    "retention": {
+      "title": "Retention period",
+      "text": "Your details are kept for 3 years after the screening, then deleted. Statistics cannot identify you."
+    },
+    "recipients": {
+      "title": "Recipients and hosting",
+      "text": "Authorised cinema staff and Stripe for payment. Data is hosted in France (Microsoft Azure, France Central region)."
+    },
+    "rights": {
+      "title": "Your rights",
+      "text": "You can ask to access, correct or delete your data by writing to dpo@legrandcinema.test. You can also lodge a complaint with the CNIL (cnil.fr)."
+    }
+  },
+  "legal": {
+    "title": "Legal notice",
+    "publisher": {
+      "title": "Website publisher",
+      "text": "Le Grand Cinéma, cinema in Mende (Lozère, France). Fictional company created for an exam case study. Contact: contact@legrandcinema.test."
+    },
+    "director": {
+      "title": "Publication director",
+      "text": "The management of Le Grand Cinéma."
+    },
+    "hosting": {
+      "title": "Hosting",
+      "text": "Microsoft Azure (France Central region), Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Ireland."
+    },
+    "cookies": {
+      "title": "Cookies and audience measurement",
+      "text": "The website uses no advertising or audience measurement cookies. Staff login uses the browser's session storage, cleared when the tab is closed."
+    },
+    "project": {
+      "title": "Credits",
+      "text": "Website built by Marine Crognier for the Bachelor Python Application Developer (STUDI)."
+    }
+  },
+  "footer": {
+    "legal": "Legal notice",
+    "privacy": "Privacy policy"
+  },
+  "rating": {
+    "TP": "All audiences",
+    "-12": "Not suitable for under 12s",
+    "-16": "Not suitable for under 16s",
+    "-18": "Not suitable for under 18s"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "back": "Back to home"
+  }
+}
