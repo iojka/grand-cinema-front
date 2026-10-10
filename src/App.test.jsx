@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -67,5 +67,24 @@ describe('App', () => {
     renderApp('/adresse-inconnue');
 
     expect(screen.getByText('Page introuvable')).toBeInTheDocument();
+  });
+
+  it('mène aux mentions légales et à la confidentialité depuis le pied de page', async () => {
+    mockEmptyProgramme();
+
+    renderApp();
+    const footer = screen.getByRole('contentinfo');
+    expect(
+      within(footer).getByRole('link', {
+        name: 'Politique de confidentialité',
+      }),
+    ).toHaveAttribute('href', '/confidentialite');
+    await userEvent.click(
+      within(footer).getByRole('link', { name: 'Mentions légales' }),
+    );
+
+    expect(
+      screen.getByRole('heading', { name: 'Mentions légales' }),
+    ).toBeInTheDocument();
   });
 });

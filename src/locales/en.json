@@ -266,6 +266,33 @@
       "text": "You can ask to access, correct or delete your data by writing to dpo@legrandcinema.test. You can also lodge a complaint with the CNIL (cnil.fr)."
     }
   },
+  "legal": {
+    "title": "Legal notice",
+    "publisher": {
+      "title": "Website publisher",
+      "text": "Le Grand Cinéma, cinema in Mende (Lozère, France). Fictional company created for an exam case study. Contact: contact@legrandcinema.test."
+    },
+    "director": {
+      "title": "Publication director",
+      "text": "The management of Le Grand Cinéma."
+    },
+    "hosting": {
+      "title": "Hosting",
+      "text": "Microsoft Azure (France Central region), Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Ireland."
+    },
+    "cookies": {
+      "title": "Cookies and audience measurement",
+      "text": "The website uses no advertising or audience measurement cookies. Staff login uses the browser's session storage, cleared when the tab is closed."
+    },
+    "project": {
+      "title": "Credits",
+      "text": "Website built by Marine Crognier for the Bachelor Python Application Developer (STUDI)."
+    }
+  },
+  "footer": {
+    "legal": "Legal notice",
+    "privacy": "Privacy policy"
+  },
   "rating": {
     "TP": "All audiences",
     "-12": "Not suitable for under 12s",
